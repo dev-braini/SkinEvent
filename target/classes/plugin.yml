@@ -1,0 +1,32 @@
+name: SkinsRestorer
+main: skinsrestorer.bukkit.SkinsRestorer
+version: 13.3
+description: Ability to restore/change skins on servers! (Offline and Online Mode)
+website: https://skinsrestorer.net/
+authors: [Th3Tr0LLeR]
+softdepend: [Multiverse-Core, MultiWorld]
+commands:
+  skinsrestorer:
+    aliases: [sr]
+    description: Admin commands.
+  skin:
+    description: Main command.
+  skins:
+    description: Opens skins GUI
+  skinver:
+    description: Shows the plugin version.
+permissions:
+   skinsrestorer.playercmds:
+     description: Allows access to all main commands.
+     default: op
+   skinsrestorer.playercmds.menu:
+     description: Allows access to the /skins command.
+   skinsrestorer.cmds:
+     description: Allows access to administrative commands.
+     default: op
+   skinsrestorer.bypasscooldown:
+     description: Bypasses any set cooldowns in the config.
+     default: op
+   skinsrestorer.bypassdisabled:
+     description: Allows access to disabled skins in the config.
+     default: op
