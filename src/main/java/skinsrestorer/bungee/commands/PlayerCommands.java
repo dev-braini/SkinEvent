@@ -14,12 +14,18 @@ import skinsrestorer.shared.storage.SkinStorage;
 import skinsrestorer.shared.utils.MojangAPI;
 import skinsrestorer.shared.utils.MojangAPI.SkinRequestException;
 
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
 import java.util.concurrent.TimeUnit;
 
 public class PlayerCommands extends Command {
 
-    public PlayerCommands() {
+    private final SkinsRestorer plugin;
+
+    public PlayerCommands(SkinsRestorer plugin) {
         super("skin", null);
+        this.plugin = plugin;
+        this.plugin.getProxy().getPluginManager().registerCommand(plugin, this);
     }
 
     //Method called for the commands help.
@@ -72,8 +78,19 @@ public class PlayerCommands extends Command {
                         return;
                     }
                 });
-            }
-            else {
+            } else if (args[0].equalsIgnoreCase("event")) {
+                //plugin.sendToServer("startSkinEvent", "", p.getServer().getInfo());
+
+                ByteArrayOutputStream b = new ByteArrayOutputStream();
+                DataOutputStream out = new DataOutputStream(b);
+                try {
+                    out.writeUTF(sender.getName());
+
+                    p.getServer().sendData("startSkinEvent", b.toByteArray());
+                } catch (Exception e) {
+                }
+
+            } else {
                 StringBuilder sb = new StringBuilder();
                 sb.append(args[0]);
 
@@ -149,6 +166,24 @@ public class PlayerCommands extends Command {
                         return;
                     }
                 });
+                return;
+            } else if(args[0].equalsIgnoreCase("vote")) {
+                System.out.println("VOTE: " + args[1]);
+
+                //plugin.sendToServer("startSkinEvent", "", p.getServer().getInfo());
+
+                ByteArrayOutputStream b = new ByteArrayOutputStream();
+                DataOutputStream out = new DataOutputStream(b);
+                try {
+                    out.writeUTF(sender.getName());
+
+                    if(args[1].equalsIgnoreCase("yes")) {
+                        p.getServer().sendData("skinEventVoteYes", b.toByteArray());
+                    } else if (args[1].equalsIgnoreCase("no")){
+                        p.getServer().sendData("skinEventVoteNo", b.toByteArray());
+                    }
+                } catch (Exception e) { }
+
                 return;
             } else {
                 help(p);

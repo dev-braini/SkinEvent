@@ -1,12 +1,20 @@
 package skinsrestorer.bungee;
 
+import net.md_5.bungee.BungeeCord;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.chat.TextComponent;
+import net.md_5.bungee.api.config.ServerInfo;
+import net.md_5.bungee.api.event.PluginMessageEvent;
+import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.api.plugin.Plugin;
 //import org.bstats.bungeecord.MetricsLite;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
+import org.bukkit.plugin.messaging.PluginMessageListener;
 import skinsrestorer.bungee.commands.AdminCommands;
 import skinsrestorer.bungee.commands.PlayerCommands;
+import skinsrestorer.bungee.listeners.BukkitListener;
 import skinsrestorer.bungee.listeners.LoginListener;
 import skinsrestorer.shared.storage.Config;
 import skinsrestorer.shared.storage.Locale;
@@ -69,6 +77,38 @@ public class SkinsRestorer extends Plugin {
         return outdated;
     }
 
+    public void sendToServer(String channel, String message, ServerInfo server) {
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        DataOutputStream output = new DataOutputStream(stream);
+
+        try {
+            output.writeUTF(channel);
+            output.writeUTF(message);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        server.sendData(channel, stream.toByteArray());
+    }
+
+    public void sendToServer(String channel, String message) {
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        DataOutputStream output = new DataOutputStream(stream);
+
+        try {
+            output.writeUTF(channel);
+            output.writeUTF(message);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        getProxy().getServers().values().stream().forEach((server) -> {
+            server.sendData(channel, stream.toByteArray());
+        });
+    }
+
+    public void sendToConsole(String command) {
+        getProxy().getPluginManager().dispatchCommand(getProxy().getConsole(), command);
+    }
+
     @Override
     public void onEnable() {
 
@@ -88,9 +128,14 @@ public class SkinsRestorer extends Plugin {
 
         getProxy().getPluginManager().registerListener(this, new LoginListener());
         getProxy().getPluginManager().registerCommand(this, new AdminCommands());
-        getProxy().getPluginManager().registerCommand(this, new PlayerCommands());
+        getProxy().getPluginManager().registerCommand(this, new PlayerCommands(this));
         getProxy().registerChannel("SkinsRestorer");
-        SkinApplier.init();
+        getProxy().registerChannel("startSkinEvent");
+        getProxy().registerChannel("skinEventVoteYes");
+        getProxy().registerChannel("skinEventVoteNo");
+        getProxy().registerChannel("setPlayerSkin");
+
+        getProxy().getPluginManager().registerListener(this, new BukkitListener(this));
 
         multibungee = Config.MULTIBUNGEE_ENABLED
                 || ProxyServer.getInstance().getPluginManager().getPlugin("RedisBungee") != null;

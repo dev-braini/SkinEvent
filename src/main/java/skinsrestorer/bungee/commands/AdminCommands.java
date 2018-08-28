@@ -28,10 +28,7 @@ public class AdminCommands extends Command {
     @SuppressWarnings("deprecation")
     @Override
     public void execute(final CommandSender sender, final String[] args) {
-
         if (sender.hasPermission("skinsrestorer.cmds")) {
-
-
             if (args.length == 1 && args[0].equalsIgnoreCase("reload")) {
                 Locale.load();
                 Config.load(SkinsRestorer.getInstance().getResourceAsStream("config.yml"));

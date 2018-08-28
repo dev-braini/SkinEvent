@@ -2,6 +2,7 @@ package skinsrestorer.bukkit;
 
 import org.bstats.bukkit.MetricsLite;
 
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.inventivetalent.update.spiget.SpigetUpdate;
 import org.inventivetalent.update.spiget.UpdateCallback;
 import org.inventivetalent.update.spiget.comparator.VersionComparator;
@@ -22,6 +23,7 @@ import org.bukkit.plugin.messaging.PluginMessageListener;
 import skinsrestorer.bukkit.commands.GUICommand;
 import skinsrestorer.bukkit.commands.SkinCommand;
 import skinsrestorer.bukkit.commands.SrCommand;
+import skinsrestorer.bukkit.menu.EventStartmode;
 import skinsrestorer.bukkit.menu.SkinsGUI;
 import skinsrestorer.bukkit.skinfactory.SkinFactory;
 import skinsrestorer.bukkit.skinfactory.UniversalSkinFactory;
@@ -34,9 +36,7 @@ import skinsrestorer.shared.utils.MojangAPI.SkinRequestException;
 import skinsrestorer.shared.utils.MySQL;
 import skinsrestorer.shared.utils.ReflectionUtil;
 
-import java.io.ByteArrayInputStream;
-import java.io.DataInputStream;
-import java.io.File;
+import java.io.*;
 import java.util.List;
 
 public class SkinsRestorer extends JavaPlugin {
@@ -45,6 +45,7 @@ public class SkinsRestorer extends JavaPlugin {
     private SkinFactory factory;
     private MySQL mysql;
     private boolean bungeeEnabled;
+    public static EventStartmode skinEventInventory;
 
     public static SkinsRestorer getInstance() {
         return instance;
@@ -62,6 +63,32 @@ public class SkinsRestorer extends JavaPlugin {
         return getDescription().getVersion();
     }
 
+    public void sendToBungeeCord(Player player, String channel, String information) {
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        DataOutputStream output = new DataOutputStream(stream);
+
+        try {
+            output.writeUTF(channel);
+            output.writeUTF(information);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        player.sendPluginMessage(this, channel, stream.toByteArray());
+    }
+
+    public void sendBroadcastMessage(String message) {
+        getServer().broadcastMessage("§e[§2SkinsRestorer§e] §f" + message);
+    }
+
+    public void sendMessageToPlayer(Player player, String message) {
+        player.sendMessage("§e[§2SkinsRestorer§e] §f" + message);
+    }
+
+    public void sendMessageToConsole(String message) {
+
+    }
+
     public void onEnable() {
 
         ConsoleCommandSender console = getServer().getConsoleSender();
@@ -74,6 +101,7 @@ public class SkinsRestorer extends JavaPlugin {
         updater.setVersionComparator(VersionComparator.SEM_VER);
 
         instance = this;
+        skinEventInventory = new EventStartmode(this);
 
         try {
             // Doesn't support Cauldron and stuff..
@@ -114,8 +142,79 @@ public class SkinsRestorer extends JavaPlugin {
         }
 
         if (bungeeEnabled) {
-
             Bukkit.getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
+            Bukkit.getMessenger().registerOutgoingPluginChannel(this, "setPlayerSkin");
+            Bukkit.getMessenger().registerIncomingPluginChannel(this, "startSkinEvent", new PluginMessageListener() {
+                @Override
+                public void onPluginMessageReceived(String channel, final Player player, final byte[] message) {
+                    if (!channel.equals("startSkinEvent"))
+                        return;
+
+                    Bukkit.getScheduler().runTaskAsynchronously(getInstance(), new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                skinEventInventory.showInventory(player);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+                }
+            });
+
+            Bukkit.getMessenger().registerIncomingPluginChannel(this, "skinEventVoteYes", new PluginMessageListener() {
+                @Override
+                public void onPluginMessageReceived(String channel, final Player player, final byte[] message) {
+                    if (!channel.equals("skinEventVoteYes"))
+                        return;
+
+                    Bukkit.getScheduler().runTaskAsynchronously(getInstance(), new Runnable() {
+                        @Override
+                        public void run() {
+                            DataInputStream in = new DataInputStream(new ByteArrayInputStream(message));
+                            try {
+                                if(!skinEventInventory.getPlayerVoted().contains(player)) {
+                                    skinEventInventory.getPlayerVoted().add(player);
+                                    skinEventInventory.incYesVotes();
+                                    sendMessageToPlayer(player,"Danke fuer deine Stimme - §aJA");
+                                } else sendMessageToPlayer(player, "§4Du hast bereits abgestimmt.");
+
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+
+                }
+            });
+
+            Bukkit.getMessenger().registerIncomingPluginChannel(this, "skinEventVoteNo", new PluginMessageListener() {
+                @Override
+                public void onPluginMessageReceived(String channel, final Player player, final byte[] message) {
+                    if (!channel.equals("skinEventVoteNo"))
+                        return;
+
+                    Bukkit.getScheduler().runTaskAsynchronously(getInstance(), new Runnable() {
+                        @Override
+                        public void run() {
+                            DataInputStream in = new DataInputStream(new ByteArrayInputStream(message));
+                            try {
+                                if(!skinEventInventory.getPlayerVoted().contains(player)) {
+                                    skinEventInventory.getPlayerVoted().add(player);
+                                    skinEventInventory.incNoVotes();
+                                    sendMessageToPlayer(player, "Danke fuer deine Stimme - §4NEIN");
+                                } else sendMessageToPlayer(player, "§4Du hast bereits abgestimmt.");
+
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+
+                }
+            });
+
             Bukkit.getMessenger().registerIncomingPluginChannel(this, "SkinsRestorer", new PluginMessageListener() {
                 @Override
                 public void onPluginMessageReceived(String channel, final Player player, final byte[] message) {
@@ -126,7 +225,6 @@ public class SkinsRestorer extends JavaPlugin {
 
                         @Override
                         public void run() {
-
                             DataInputStream in = new DataInputStream(new ByteArrayInputStream(message));
 
                             try {
