@@ -1,5 +1,5 @@
 							---------------------
-							    SkinsRestorer
+							    SkinsRestorer 1
 							---------------------
 
  Restoring offline mode skins & changing skins for Spigot/CraftBukkit/BungeeCord/Waterfall servers
