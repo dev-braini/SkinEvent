@@ -1,9 +1,19 @@
 Unterstützte Versionen: 1.7.10 - 1.12.x
 
 # SkinPlugin
-
 ## Beschreibung
 Entwickler-Prüfungsaufgabe für die Bewerbung bei GrieferGames.net im Bereich _Spigot & Bungeecord Entwicklung_.
+
+## Features
+
+
+* Ändere deinen Skin - Jeder Skin der je auf Mojang geladen wurde ist erlaubt
+* Starte einen SkinEvent, in welchem alle Spieler auf dem Server, nach einer Abstimmung, denselben Skin erhalten
+* Adminrechte: Ändere den Skin eines anderen Spielers / Starte den SkinEvent ohne Abstimmung
+* BungeeCord support - Die Skins bleiben auch bei einem Serverwechsel erhalten
+* Fast kein Mojang-API rate limit - wegen dem Caching
+* Keine Client-Modifikationen nötig
+* MySQL-Datenbank
 
 ## Kommandos
 
@@ -14,9 +24,6 @@ Entwickler-Prüfungsaufgabe für die Bewerbung bei GrieferGames.net im Bereich _
     /skin vote <yes/no>                        Stimme ab, ob ein SkinEvent durchgeführt werden soll
                 
     /sr set <player> <username>                Ändert den Skin von einem Spieler...
-     
-
-
 
 _Die Skins sind 10 Minuten gültig._ Danach werden Sie beim nächsten Reload zurückgesetzt.
 
@@ -40,10 +47,10 @@ _Die Skins sind 10 Minuten gültig._ Danach werden Sie beim nächsten Reload zur
     * Spigot 1.8.8+ or any fork of it
     * BungeeCord 1.12+ (Rückwärtskompatibel)
 
-## How to install on BungeeCord
+## Installation
 
 1. Installiere das Plugin auf dem BungeeCord **und** dem Bukkit-Server
 2. Aktiviere BungeeCord support in der Spigot Konfiguration (`bungeecord: true` in spigot.yml)
 
-## License
-SkinsRestorer is licensed under GNU General Public License v3.0. Please see [`LICENSE.txt`](https://github.com/Th3Tr0LLeR/SkinsRestorer---Maro/blob/master/LICENSE) for more info.
+## Lizenz
+SkinPlugin ist lizenziert unter  GNU General Public License v3.0. Bitte lies [`LICENSE.txt`](hhttps://github.com/dev-braini/SkinEvent/blob/master/LICENSE) für mehr Informationen.
