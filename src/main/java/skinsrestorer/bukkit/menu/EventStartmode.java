@@ -31,11 +31,13 @@ public class EventStartmode implements Listener {
     private Player sender;
     private Integer noVotes = 0, yesVotes = 0, numPlayers;
     private boolean isRunning = false;
+    private EventSkinChoose eventSkinChoose;
     ArrayList<Player> playerVoted = new ArrayList<>();
     ConsoleCommandSender console = Bukkit.getServer().getConsoleSender();
 
     public EventStartmode(SkinsRestorer p) {
         this.plugin = p;
+        eventSkinChoose = new EventSkinChoose(plugin, this);
         inv = Bukkit.getServer().createInventory(null, 9, "SkinEvent: Abstimmung starten?");
 
         ItemStack y = createItem(DyeColor.LIME, ChatColor.GREEN + "Ja, Abstimmung starten.");
@@ -71,12 +73,52 @@ public class EventStartmode implements Listener {
 
     public void showInventory(Player p) {
         if(isRunning) {
-            plugin.sendMessageToPlayer(p, "§4wEs laeuft bereits ein SkinEvent.");
+            plugin.sendMessageToPlayer(p, "§4Es laeuft bereits ein SkinEvent.");
             return;
         }
         this.sender = p;
         p.openInventory(inv);
     }
+
+    public void doASurvey(String skin) {
+        numPlayers = Bukkit.getServer().getOnlinePlayers().size();
+        yesVotes = 0; noVotes = 0;
+        playerVoted.clear();
+        isRunning = true;
+
+        plugin.sendBroadcastMessage(sender.getDisplayName() + " hat eine Umfrage gestartet.");
+        plugin.sendBroadcastMessage("§e/skin vote yes §f fuer §aJA");
+        plugin.sendBroadcastMessage("§e/skin vote no  §f fuer §4NEIN");
+
+        // check survey for one minute
+        final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+
+        final Runnable task = new Runnable() {
+            public void run() {
+                //System.out.println("Would it run?"+System.currentTimeMillis());
+                //System.out.println("TOTAL: " + numPlayers + ", YES: " + yesVotes + ", NO: " + noVotes);
+            }
+        };
+        final ScheduledFuture<?> handle = scheduler.scheduleAtFixedRate(task, 2, 5, SECONDS);
+        scheduler.schedule(new Runnable() {
+            public void run() {
+                handle.cancel(true);
+
+                isRunning = false;
+                double percent = (yesVotes.doubleValue()/numPlayers.doubleValue())*100;
+
+                if(percent >= 50) {
+                    plugin.sendBroadcastMessage("§aAbstimmung erfolgreich §f - §e" + Math.round(percent) + "%§f JA-Stimmen");
+                    plugin.sendToBungeeCord(sender, "setPlayerSkin", skin);
+                } else {
+                    plugin.sendBroadcastMessage("§4Abstimmung gescheitert §f - §e" + Math.round(percent) + "%§f JA-Stimmen");
+                }
+
+            }
+        }, 60, SECONDS);
+    }
+
+
 
     @EventHandler
     public void onClick(InventoryClickEvent event) {
@@ -88,49 +130,13 @@ public class EventStartmode implements Listener {
             String clickedDisplayName = clicked.getItemMeta().getDisplayName();
             event.setCancelled(true);
             player.closeInventory();
+            boolean forceChange = false;
 
-            if (clickedDisplayName.contains("Ja")) {
-                numPlayers = Bukkit.getServer().getOnlinePlayers().size();
-                yesVotes = 0; noVotes = 0;
-                playerVoted.clear();
-                isRunning = true;
+            if (clickedDisplayName.contains("Nein")) forceChange = true;
 
-                plugin.sendBroadcastMessage(player.getDisplayName() + " hat eine Umfrage gestartet.");
-                plugin.sendBroadcastMessage("§e/skin vote yes §f fuer §aJA");
-                plugin.sendBroadcastMessage("§e/skin vote no  §f fuer §4NEIN");
+            eventSkinChoose.showInventory(player, forceChange);
 
-                // check survey for one minute
-                final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
-                final Runnable task = new Runnable() {
-                    public void run() {
-                        //System.out.println("Would it run?"+System.currentTimeMillis());
-                        //System.out.println("TOTAL: " + numPlayers + ", YES: " + yesVotes + ", NO: " + noVotes);
-                    }
-                };
-                final ScheduledFuture<?> handle =
-                        scheduler.scheduleAtFixedRate(task, 2, 5, SECONDS);
-                scheduler.schedule(new Runnable() {
-                    public void run() {
-                        handle.cancel(true);
-
-                        isRunning = false;
-                        double percent = (yesVotes.doubleValue()/numPlayers.doubleValue())*100;
-
-                        if(percent >= 50) {
-                            plugin.sendBroadcastMessage("§aAbstimmung erfolgreich §f - §e" + Math.round(percent) + "%§f JA-Stimmen");
-                            plugin.sendToBungeeCord(sender, "setPlayerSkin", sender.getName());
-                        } else {
-                            plugin.sendBroadcastMessage("§4Abstimmung gescheitert §f - §e" + Math.round(percent) + "%§f JA-Stimmen");
-                        }
-
-                    }
-                }, 60, SECONDS);
-            }
-
-            if (clickedDisplayName.contains("Nein")) {
-                plugin.sendToBungeeCord(sender, "setPlayerSkin", sender.getName());
-            }
         }
     }
 
