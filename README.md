@@ -11,7 +11,6 @@ Entwickler-Prüfungsaufgabe für die Bewerbung bei GrieferGames.net im Bereich _
 * Starte einen SkinEvent, in welchem alle Spieler auf dem Server, nach einer Abstimmung, denselben Skin erhalten
 * Adminrechte: Ändere den Skin eines anderen Spielers / Starte den SkinEvent ohne Abstimmung
 * BungeeCord support - Die Skins bleiben auch bei einem Serverwechsel erhalten
-* Fast kein Mojang-API rate limit - wegen dem Caching
 * Keine Client-Modifikationen nötig
 * MySQL-Datenbank
 

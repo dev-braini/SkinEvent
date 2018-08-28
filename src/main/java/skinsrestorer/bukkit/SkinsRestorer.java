@@ -78,11 +78,11 @@ public class SkinsRestorer extends JavaPlugin {
     }
 
     public void sendBroadcastMessage(String message) {
-        getServer().broadcastMessage("§e[§2SkinsRestorer§e] §f" + message);
+        getServer().broadcastMessage("§e[§2SkinEvent§e] §f" + message);
     }
 
     public void sendMessageToPlayer(Player player, String message) {
-        player.sendMessage("§e[§2SkinsRestorer§e] §f" + message);
+        player.sendMessage("§e[§2SkinEvent§e] §f" + message);
     }
 
     public void sendMessageToConsole(String message) {
@@ -106,7 +106,7 @@ public class SkinsRestorer extends JavaPlugin {
         try {
             // Doesn't support Cauldron and stuff..
             Class.forName("net.minecraftforge.cauldron.CauldronHooks");
-            console.sendMessage("§e[§2SkinsRestorer§e] §cSkinsRestorer doesn't support Cauldron, Thermos or KCauldron, Sorry :(");
+            console.sendMessage("§e[§2SkinEvent§e] §cSkinEvent doesn't support Cauldron, Thermos or KCauldron, Sorry :(");
             Bukkit.getPluginManager().disablePlugin(this);
             return;
         } catch (Exception e) {
@@ -120,16 +120,16 @@ public class SkinsRestorer extends JavaPlugin {
                 factory = new UniversalSkinFactory();
             }
         }
-        console.sendMessage("§e[§2SkinsRestorer§e] §aDetected Minecraft §e" + ReflectionUtil.serverVersion + "§a, using §e" + factory.getClass().getSimpleName() + "§a.");
+        console.sendMessage("§e[§2SkinEvent§e] §aDetected Minecraft §e" + ReflectionUtil.serverVersion + "§a, using §e" + factory.getClass().getSimpleName() + "§a.");
 
         // Multiverse Core support.
         MCoreAPI.init();
         if (MCoreAPI.check())
-            console.sendMessage("§e[§2SkinsRestorer§e] §aDetected §eMultiverse-Core§a! Using it for dimensions.");
+            console.sendMessage("§e[§2SkinEvent§e] §aDetected §eMultiverse-Core§a! Using it for dimensions.");
 
         // Detect ChangeSkin
         if(getServer().getPluginManager().getPlugin("ChangeSkin") != null) {
-            console.sendMessage("§e[§2SkinsRestorer§e] §cWe have detected ChangeSkin on your server, disabling SkinsRestorer.");
+            console.sendMessage("§e[§2SkinEvent§e] §cWe have detected ChangeSkin on your server, disabling SkinEvent.");
             Bukkit.getPluginManager().disablePlugin(this);
             return;
         }
@@ -250,39 +250,49 @@ public class SkinsRestorer extends JavaPlugin {
                     @Override
                     public void updateAvailable(String newVersion, String downloadUrl, boolean hasDirectDownload) {
                         if (hasDirectDownload) {
-                            console.sendMessage("§e[§2SkinsRestorer§e] §a----------------------------------------------");
-                            console.sendMessage("§e[§2SkinsRestorer§e] §a    +===============+");
-                            console.sendMessage("§e[§2SkinsRestorer§e] §a    | SkinsRestorer |");
-                            console.sendMessage("§e[§2SkinsRestorer§e] §a    |---------------|");
-                            console.sendMessage("§e[§2SkinsRestorer§e] §a    |  §eBungee Mode§a  |");
-                            console.sendMessage("§e[§2SkinsRestorer§e] §a    +===============+");
-                            console.sendMessage("§e[§2SkinsRestorer§e] §a----------------------------------------------");
-                            console.sendMessage("§e[§2SkinsRestorer§e] §b    Current version: §c" + getVersion());
-                            console.sendMessage("§e[§2SkinsRestorer§e]     A new version is available! Downloading it now...");
-                            console.sendMessage("§e[§2SkinsRestorer§e] §a----------------------------------------------");
+                            console.sendMessage("§e[§2SkinEvent§e] §a----------------------------------------------");
+                            console.sendMessage("§e[§2SkinEvent§e] §a    +================+");
+                            console.sendMessage("§e[§2SkinEvent§e] §a    |   SkinPlugin   |");
+                            console.sendMessage("§e[§2SkinEvent§e] §a    |----------------|");
+                            console.sendMessage("§e[§2SkinEvent§e] §a    |  §eBungee Mode§a   |");
+                            console.sendMessage("§e[§2SkinEvent§e] §a    +================+");
+                            console.sendMessage("§e[§2SkinEvent§e] §a----------------------------------------------");
+                            console.sendMessage("§e[§2SkinEvent§e] §b    Current version: §c" + getVersion());
+                            console.sendMessage("§e[§2SkinEvent§e]     A new version is available! Downloading it now...");
+                            console.sendMessage("§e[§2SkinEvent§e] §a----------------------------------------------");
                             if (updater.downloadUpdate()) {
-                                console.sendMessage("§e[§2SkinsRestorer§e] Update downloaded successfully, it will be applied on the next restart.");
+                                console.sendMessage("§e[§2SkinEvent§e] Update downloaded successfully, it will be applied on the next restart.");
                             } else {
                                 // Update failed
-                                console.sendMessage("§e[§2SkinsRestorer§e] §cCould not download the update, reason: " + updater.getFailReason());
+                                console.sendMessage("§e[§2SkinEvent§e] §cCould not download the update, reason: " + updater.getFailReason());
                             }
                         }
                     }
 
                     @Override
                     public void upToDate() {
-                        console.sendMessage("§e[§2SkinsRestorer§e] §a----------------------------------------------");
-                        console.sendMessage("§e[§2SkinsRestorer§e] §a    +===============+");
-                        console.sendMessage("§e[§2SkinsRestorer§e] §a    | SkinsRestorer |");
-                        console.sendMessage("§e[§2SkinsRestorer§e] §a    |---------------|");
-                        console.sendMessage("§e[§2SkinsRestorer§e] §a    |  §eBungee Mode§a  |");
-                        console.sendMessage("§e[§2SkinsRestorer§e] §a    +===============+");
-                        console.sendMessage("§e[§2SkinsRestorer§e] §a----------------------------------------------");
-                        console.sendMessage("§e[§2SkinsRestorer§e] §b    Current version: §a" + getVersion());
-                        console.sendMessage("§e[§2SkinsRestorer§e] §a    This is the latest version!");
-                        console.sendMessage("§e[§2SkinsRestorer§e] §a----------------------------------------------");
+                        console.sendMessage("§e[§2SkinEvent§e] §a----------------------------------------------");
+                        console.sendMessage("§e[§2SkinEvent§e] §a    +================+");
+                        console.sendMessage("§e[§2SkinEvent§e] §a    |   SkinPlugin   |");
+                        console.sendMessage("§e[§2SkinEvent§e] §a    |----------------|");
+                        console.sendMessage("§e[§2SkinEvent§e] §a    |  §eBungee Mode§a   |");
+                        console.sendMessage("§e[§2SkinEvent§e] §a    +================+");
+                        console.sendMessage("§e[§2SkinEvent§e] §a----------------------------------------------");
+                        console.sendMessage("§e[§2SkinEvent§e] §b    Current version: §a" + getVersion());
+                        console.sendMessage("§e[§2SkinEvent§e] §a    This is the latest version!");
+                        console.sendMessage("§e[§2SkinEvent§e] §a----------------------------------------------");
                     }
                 });
+            } else {
+                console.sendMessage("§e[§2SkinEvent§e] §a----------------------------------------------");
+                console.sendMessage("§e[§2SkinEvent§e] §a    +================+");
+                console.sendMessage("§e[§2SkinEvent§e] §a    |   SkinPlugin   |");
+                console.sendMessage("§e[§2SkinEvent§e] §a    |----------------|");
+                console.sendMessage("§e[§2SkinEvent§e] §a    |  §eBungee Mode§a   |");
+                console.sendMessage("§e[§2SkinEvent§e] §a    +================+");
+                console.sendMessage("§e[§2SkinEvent§e] §a----------------------------------------------");
+                console.sendMessage("§e[§2SkinEvent§e] §b    Current version: §a" + getVersion());
+                console.sendMessage("§e[§2SkinEvent§e] §a----------------------------------------------");
             }
 
             return;
@@ -307,7 +317,7 @@ public class SkinsRestorer extends JavaPlugin {
         getCommand("skinver").setExecutor(new CommandExecutor() {
 
             public boolean onCommand(CommandSender sender, Command arg1, String arg2, String[] arg3) {
-                sender.sendMessage("§8This server is running §aSkinsRestorer §e"
+                sender.sendMessage("§8This server is running §aSkinEvent §e"
                         + SkinsRestorer.getInstance().getVersion() + "§8, made with love by §c"
                         + SkinsRestorer.getInstance().getDescription().getAuthors().get(0)
                         + "§8, utilizing Minecraft §a" + ReflectionUtil.serverVersion + "§8.");
@@ -354,33 +364,33 @@ public class SkinsRestorer extends JavaPlugin {
                         @Override
                         public void updateAvailable(String newVersion, String downloadUrl, boolean hasDirectDownload) {
                             if (hasDirectDownload) {
-                                console.sendMessage("§e[§2SkinsRestorer§e] §a----------------------------------------------");
-                                console.sendMessage("§e[§2SkinsRestorer§e] §a    +===============+");
-                                console.sendMessage("§e[§2SkinsRestorer§e] §a    | SkinsRestorer |");
-                                console.sendMessage("§e[§2SkinsRestorer§e] §a    +===============+");
-                                console.sendMessage("§e[§2SkinsRestorer§e] §a----------------------------------------------");
-                                console.sendMessage("§e[§2SkinsRestorer§e] §b    Current version: §c" + getVersion());
-                                console.sendMessage("§e[§2SkinsRestorer§e]     A new version is available! Downloading it now...");
-                                console.sendMessage("§e[§2SkinsRestorer§e] §a----------------------------------------------");
+                                console.sendMessage("§e[§2SkinEvent§e] §a----------------------------------------------");
+                                console.sendMessage("§e[§2SkinEvent§e] §a    +================+");
+                                console.sendMessage("§e[§2SkinEvent§e] §a    |   SkinPlugin   |");
+                                console.sendMessage("§e[§2SkinEvent§e] §a    +================+");
+                                console.sendMessage("§e[§2SkinEvent§e] §a----------------------------------------------");
+                                console.sendMessage("§e[§2SkinEvent§e] §b    Current version: §c" + getVersion());
+                                console.sendMessage("§e[§2SkinEvent§e]     A new version is available! Downloading it now...");
+                                console.sendMessage("§e[§2SkinEvent§e] §a----------------------------------------------");
                                 if (updater.downloadUpdate()) {
-                                    console.sendMessage("§e[§2SkinsRestorer§e] Update downloaded successfully, it will be applied on the next restart.");
+                                    console.sendMessage("§e[§2SkinEvent§e] Update downloaded successfully, it will be applied on the next restart.");
                                 } else {
                                     // Update failed
-                                    console.sendMessage("§e[§2SkinsRestorer§e] §cCould not download the update, reason: " + updater.getFailReason());
+                                    console.sendMessage("§e[§2SkinEvent§e] §cCould not download the update, reason: " + updater.getFailReason());
                                 }
                             }
                         }
 
                         @Override
                         public void upToDate() {
-                            console.sendMessage("§e[§2SkinsRestorer§e] §a----------------------------------------------");
-                            console.sendMessage("§e[§2SkinsRestorer§e] §a    +===============+");
-                            console.sendMessage("§e[§2SkinsRestorer§e] §a    | SkinsRestorer |");
-                            console.sendMessage("§e[§2SkinsRestorer§e] §a    +===============+");
-                            console.sendMessage("§e[§2SkinsRestorer§e] §a----------------------------------------------");
-                            console.sendMessage("§e[§2SkinsRestorer§e] §b    Current version: §a" + getVersion());
-                            console.sendMessage("§e[§2SkinsRestorer§e] §a    This is the latest version!");
-                            console.sendMessage("§e[§2SkinsRestorer§e] §a----------------------------------------------");
+                            console.sendMessage("§e[§2SkinEvent§e] §a----------------------------------------------");
+                            console.sendMessage("§e[§2SkinEvent§e] §a    +================+");
+                            console.sendMessage("§e[§2SkinEvent§e] §a    |   SkinPlugin   |");
+                            console.sendMessage("§e[§2SkinEvent§e] §a    +================+");
+                            console.sendMessage("§e[§2SkinEvent§e] §a----------------------------------------------");
+                            console.sendMessage("§e[§2SkinEvent§e] §b    Current version: §a" + getVersion());
+                            console.sendMessage("§e[§2SkinEvent§e] §a    This is the latest version!");
+                            console.sendMessage("§e[§2SkinEvent§e] §a----------------------------------------------");
                         }
                     });
                 }
@@ -391,7 +401,7 @@ public class SkinsRestorer extends JavaPlugin {
                             SkinStorage.setSkinData(skin, MojangAPI.getSkinProperty(MojangAPI.getUUID(skin)));
                         } catch (SkinRequestException e) {
                             if (SkinStorage.getSkinData(skin) == null)
-                                console.sendMessage("§e[§2SkinsRestorer§e] §cDefault Skin '" + skin + "' request error: " + e.getReason());
+                                console.sendMessage("§e[§2SkinEvent§e] §cDefault Skin '" + skin + "' request error: " + e.getReason());
                         }
             }
 

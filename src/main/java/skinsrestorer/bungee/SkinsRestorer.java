@@ -147,13 +147,13 @@ public class SkinsRestorer extends Plugin {
 
                 CommandSender console = getProxy().getConsole();
 
-                if (Config.UPDATER_ENABLED)
+                if (Config.UPDATER_ENABLED) {
                     if (checkVersion(console).equals(getVersion())) {
                         outdated = false;
                         console.sendMessage(new TextComponent("§e[§2SkinsRestorer§e] §a----------------------------------------------"));
-                        console.sendMessage(new TextComponent("§e[§2SkinsRestorer§e] §a    +===============+"));
-                        console.sendMessage(new TextComponent("§e[§2SkinsRestorer§e] §a    | SkinsRestorer |"));
-                        console.sendMessage(new TextComponent("§e[§2SkinsRestorer§e] §a    +===============+"));
+                        console.sendMessage(new TextComponent("§e[§2SkinsRestorer§e] §a    +================+"));
+                        console.sendMessage(new TextComponent("§e[§2SkinsRestorer§e] §a    |   SkinPlugin   |"));
+                        console.sendMessage(new TextComponent("§e[§2SkinsRestorer§e] §a    +================+"));
                         console.sendMessage(new TextComponent("§e[§2SkinsRestorer§e] §a----------------------------------------------"));
                         console.sendMessage(new TextComponent("§e[§2SkinsRestorer§e] §b    Current version: §a" + getVersion()));
                         console.sendMessage(new TextComponent("§e[§2SkinsRestorer§e] §a    This is the latest version!"));
@@ -161,15 +161,24 @@ public class SkinsRestorer extends Plugin {
                     } else {
                         outdated = true;
                         console.sendMessage(new TextComponent("§e[§2SkinsRestorer§e] §a----------------------------------------------"));
-                        console.sendMessage(new TextComponent("§e[§2SkinsRestorer§e] §a    +===============+"));
-                        console.sendMessage(new TextComponent("§e[§2SkinsRestorer§e] §a    | SkinsRestorer |"));
-                        console.sendMessage(new TextComponent("§e[§2SkinsRestorer§e] §a    +===============+"));
+                        console.sendMessage(new TextComponent("§e[§2SkinsRestorer§e] §a    +================+"));
+                        console.sendMessage(new TextComponent("§e[§2SkinsRestorer§e] §a    |   SkinPlugin   |"));
+                        console.sendMessage(new TextComponent("§e[§2SkinsRestorer§e] §a    +================+"));
                         console.sendMessage(new TextComponent("§e[§2SkinsRestorer§e] §a----------------------------------------------"));
                         console.sendMessage(new TextComponent("§e[§2SkinsRestorer§e] §b    Current version: §c" + getVersion()));
                         console.sendMessage(new TextComponent("§e[§2SkinsRestorer§e] §e    A new version is available! Download it at:"));
                         console.sendMessage(new TextComponent("§e[§2SkinsRestorer§e] §e    https://www.spigotmc.org/resources/skinsrestorer.2124"));
                         console.sendMessage(new TextComponent("§e[§2SkinsRestorer§e] §a----------------------------------------------"));
                     }
+                } else {
+                        console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §a----------------------------------------------"));
+                        console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §a    +================+"));
+                        console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §a    |   SkinPlugin   |"));
+                        console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §a    +================+"));
+                        console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §a----------------------------------------------"));
+                        console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §b    Current version: §a" + getVersion()));
+                        console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §a----------------------------------------------"));
+                }
 
                 if (Config.DEFAULT_SKINS_ENABLED)
                     for (String skin : Config.DEFAULT_SKINS)

@@ -38,7 +38,7 @@ public class BukkitListener implements Listener {
 
                 ProxyServer.getInstance().getScheduler().runAsync(SkinsRestorer.getInstance(), () -> {
                     for (ProxiedPlayer player : onlinePlayers) {
-                        try{ Thread.sleep(18); } catch(InterruptedException ex) { Thread.currentThread().interrupt(); }
+                        try{ Thread.sleep(20); } catch(InterruptedException ex) { Thread.currentThread().interrupt(); }
                         String command = "sr set " + player.getName() + " " + senderName;
 
                         plugin.sendToConsole(command);

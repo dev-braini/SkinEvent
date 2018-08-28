@@ -43,4 +43,4 @@ MySQL:
 
 # Enable or disable the updater.
 Updater:
-  Enabled: true
+  Enabled: false
