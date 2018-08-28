@@ -16,7 +16,7 @@ public class ProxyManager {
 
     public static List<String> getList() {
         if (proxies.isEmpty()) {
-            System.out.print("[SkinsRestorer] Proxy list is empty. Getting one.");
+            System.out.print("[SkinPlugin] Proxy list is empty. Getting one.");
             return updateProxies();
         }
         return proxies;
@@ -29,7 +29,7 @@ public class ProxyManager {
             List<String> pp = readURL(url);
             proxies = pp;
         } catch (IOException e) {
-            System.out.print("[SkinsRestorer] We couldn't update the proxy list. This usually indicates a firewall problem. A detailed error is below.");
+            System.out.print("[SkinPlugin] We couldn't update the proxy list. This usually indicates a firewall problem. A detailed error is below.");
             e.printStackTrace();
         }
         return proxies;
@@ -62,7 +62,7 @@ public class ProxyManager {
             in.close();
             return proxies;
         } catch (IOException e) {
-            System.out.print("[SkinsRestorer] We couldn't update the proxy list. This usually indicates a firewall problem. A detailed error is below.");
+            System.out.print("[SkinPlugin] We couldn't update the proxy list. This usually indicates a firewall problem. A detailed error is below.");
             e.printStackTrace();
             return updateProxies();
         }

@@ -114,11 +114,11 @@ public class SpigetUpdate extends SpigetUpdateAbstract {
 			return false;
 		}
 
-		console.sendMessage("§e[§2SkinsRestorer§e] §eDownloading update...");
+		console.sendMessage("§e[§2SkinEvent§e] §eDownloading update...");
 		dispatch(UpdateDownloader.downloadAsync(latestResourceInfo, updateFile, getUserAgent(), new DownloadCallback() {
 			@Override
 			public void finished() {
-				console.sendMessage("§e[§2SkinsRestorer§e] §eUpdate saved as " + updateFile.getPath());
+				console.sendMessage("§e[§2SkinEvent§e] §eUpdate saved as " + updateFile.getPath());
 			}
 
 			@Override

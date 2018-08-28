@@ -174,11 +174,13 @@ public class SkinsRestorer extends JavaPlugin {
                         public void run() {
                             DataInputStream in = new DataInputStream(new ByteArrayInputStream(message));
                             try {
-                                if(!skinEventInventory.getPlayerVoted().contains(player)) {
-                                    skinEventInventory.getPlayerVoted().add(player);
-                                    skinEventInventory.incYesVotes();
-                                    sendMessageToPlayer(player,"Danke fuer deine Stimme - §aJA");
-                                } else sendMessageToPlayer(player, "§4Du hast bereits abgestimmt.");
+                                if(skinEventInventory.isRunning()) {
+                                    if (!skinEventInventory.getPlayerVoted().contains(player)) {
+                                        skinEventInventory.getPlayerVoted().add(player);
+                                        skinEventInventory.incYesVotes();
+                                        sendMessageToPlayer(player, "Danke für deine Stimme - §aJA");
+                                    } else sendMessageToPlayer(player, "§4Du hast bereits abgestimmt!");
+                                } else sendMessageToPlayer(player, "§4Momentan läuft kein SkinEvent!");
 
                             } catch (Exception e) {
                                 e.printStackTrace();
@@ -200,11 +202,13 @@ public class SkinsRestorer extends JavaPlugin {
                         public void run() {
                             DataInputStream in = new DataInputStream(new ByteArrayInputStream(message));
                             try {
-                                if(!skinEventInventory.getPlayerVoted().contains(player)) {
-                                    skinEventInventory.getPlayerVoted().add(player);
-                                    skinEventInventory.incNoVotes();
-                                    sendMessageToPlayer(player, "Danke fuer deine Stimme - §4NEIN");
-                                } else sendMessageToPlayer(player, "§4Du hast bereits abgestimmt.");
+                                if(skinEventInventory.isRunning()) {
+                                    if(!skinEventInventory.getPlayerVoted().contains(player)) {
+                                        skinEventInventory.getPlayerVoted().add(player);
+                                        skinEventInventory.incNoVotes();
+                                        sendMessageToPlayer(player, "Danke für deine Stimme - §4NEIN");
+                                    } else sendMessageToPlayer(player, "§4Du hast bereits abgestimmt!");
+                                } else sendMessageToPlayer(player, "§4Momentan läuft kein SkinEvent!");
 
                             } catch (Exception e) {
                                 e.printStackTrace();

@@ -52,7 +52,7 @@ public class SkinsRestorer extends Plugin {
                 return version;
         } catch (Exception ex) {
             ex.printStackTrace();
-            console.sendMessage(new TextComponent("§e[§2SkinsRestorer§e] §cFailed to check for an update on Spigot."));
+            console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §cFailed to check for an update on Spigot."));
         }
         return getVersion();
     }
@@ -150,25 +150,25 @@ public class SkinsRestorer extends Plugin {
                 if (Config.UPDATER_ENABLED) {
                     if (checkVersion(console).equals(getVersion())) {
                         outdated = false;
-                        console.sendMessage(new TextComponent("§e[§2SkinsRestorer§e] §a----------------------------------------------"));
-                        console.sendMessage(new TextComponent("§e[§2SkinsRestorer§e] §a    +================+"));
-                        console.sendMessage(new TextComponent("§e[§2SkinsRestorer§e] §a    |   SkinPlugin   |"));
-                        console.sendMessage(new TextComponent("§e[§2SkinsRestorer§e] §a    +================+"));
-                        console.sendMessage(new TextComponent("§e[§2SkinsRestorer§e] §a----------------------------------------------"));
-                        console.sendMessage(new TextComponent("§e[§2SkinsRestorer§e] §b    Current version: §a" + getVersion()));
-                        console.sendMessage(new TextComponent("§e[§2SkinsRestorer§e] §a    This is the latest version!"));
-                        console.sendMessage(new TextComponent("§e[§2SkinsRestorer§e] §a----------------------------------------------"));
+                        console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §a----------------------------------------------"));
+                        console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §a    +================+"));
+                        console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §a    |   SkinPlugin   |"));
+                        console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §a    +================+"));
+                        console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §a----------------------------------------------"));
+                        console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §b    Current version: §a" + getVersion()));
+                        console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §a    This is the latest version!"));
+                        console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §a----------------------------------------------"));
                     } else {
                         outdated = true;
-                        console.sendMessage(new TextComponent("§e[§2SkinsRestorer§e] §a----------------------------------------------"));
-                        console.sendMessage(new TextComponent("§e[§2SkinsRestorer§e] §a    +================+"));
-                        console.sendMessage(new TextComponent("§e[§2SkinsRestorer§e] §a    |   SkinPlugin   |"));
-                        console.sendMessage(new TextComponent("§e[§2SkinsRestorer§e] §a    +================+"));
-                        console.sendMessage(new TextComponent("§e[§2SkinsRestorer§e] §a----------------------------------------------"));
-                        console.sendMessage(new TextComponent("§e[§2SkinsRestorer§e] §b    Current version: §c" + getVersion()));
-                        console.sendMessage(new TextComponent("§e[§2SkinsRestorer§e] §e    A new version is available! Download it at:"));
-                        console.sendMessage(new TextComponent("§e[§2SkinsRestorer§e] §e    https://www.spigotmc.org/resources/skinsrestorer.2124"));
-                        console.sendMessage(new TextComponent("§e[§2SkinsRestorer§e] §a----------------------------------------------"));
+                        console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §a----------------------------------------------"));
+                        console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §a    +================+"));
+                        console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §a    |   SkinPlugin   |"));
+                        console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §a    +================+"));
+                        console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §a----------------------------------------------"));
+                        console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §b    Current version: §c" + getVersion()));
+                        console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §e    A new version is available! Download it at:"));
+                        console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §e    https://www.spigotmc.org/resources/skinsrestorer.2124"));
+                        console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §a----------------------------------------------"));
                     }
                 } else {
                         console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §a----------------------------------------------"));
@@ -186,7 +186,7 @@ public class SkinsRestorer extends Plugin {
                             SkinStorage.setSkinData(skin, MojangAPI.getSkinProperty(MojangAPI.getUUID(skin)));
                         } catch (SkinRequestException e) {
                             if (SkinStorage.getSkinData(skin) == null)
-                                console.sendMessage(new TextComponent("§e[§2SkinsRestorer§e] §cDefault Skin '" + skin + "' request error:" + e.getReason()));
+                                console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §cDefault Skin '" + skin + "' request error:" + e.getReason()));
                         }
             }
 

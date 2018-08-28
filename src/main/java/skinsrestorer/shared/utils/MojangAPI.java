@@ -40,7 +40,7 @@ public class MojangAPI {
 
             return SkinStorage.createProperty("textures", value, signature);
         } catch (Exception e) {
-            System.out.println("[SkinsRestorer] Switching to proxy to get skin property.");
+            System.out.println("[SkinPlugin] Switching to proxy to get skin property.");
             return getSkinPropertyProxy(uuid);
         }
     }
@@ -61,7 +61,7 @@ public class MojangAPI {
 
             return SkinStorage.createProperty("textures", value, signature);
         } catch (Exception e) {
-            System.out.println("[SkinsRestorer] Failed to get proxy.");
+            System.out.println("[SkinPlugin] Failed to get proxy.");
             return false;
         }
     }
@@ -107,7 +107,7 @@ public class MojangAPI {
 
             return output.substring(7, 39);
         } catch (IOException e) {
-            System.out.println("[SkinsRestorer] Switching to proxy to get skin property.");
+            System.out.println("[SkinPlugin] Switching to proxy to get skin property.");
             return getUUIDProxy(name);
         }
     }

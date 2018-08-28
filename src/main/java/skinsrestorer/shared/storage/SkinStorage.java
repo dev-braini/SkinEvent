@@ -43,7 +43,7 @@ public class SkinStorage {
                     isBungee = false;
                 } catch (Exception exc) {
                     System.out.println(
-                            "[SkinsRestorer] Could not find a valid Property class! Plugin will not work properly");
+                            "[SkinPlugin] Could not find a valid Property class! Plugin will not work properly");
                 }
             }
         }
@@ -226,7 +226,7 @@ public class SkinStorage {
 
                 } catch (Exception e) {
                     removeSkinData(name);
-                    System.out.println("[SkinsRestorer] Unsupported player format.. removing (" + name + ").");
+                    System.out.println("[SkinPlugin] Unsupported player format.. removing (" + name + ").");
                 }
 
             return null;
@@ -263,7 +263,7 @@ public class SkinStorage {
 
             } catch (Exception e) {
                 removeSkinData(name);
-                System.out.println("[SkinsRestorer] Unsupported player format.. removing (" + name + ").");
+                System.out.println("[SkinPlugin] Unsupported player format.. removing (" + name + ").");
             }
 
             return null;

@@ -79,8 +79,6 @@ public class PlayerCommands extends Command {
                     }
                 });
             } else if (args[0].equalsIgnoreCase("event")) {
-                //plugin.sendToServer("startSkinEvent", "", p.getServer().getInfo());
-
                 ByteArrayOutputStream b = new ByteArrayOutputStream();
                 DataOutputStream out = new DataOutputStream(b);
                 try {

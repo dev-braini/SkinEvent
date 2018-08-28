@@ -35,7 +35,7 @@ public class MySQL {
             try {
                 con.close();
             } catch (SQLException e) {
-                System.out.println("[SkinsRestorer] MySQL error: " + e.getMessage());
+                System.out.println("[SkinPlugin] MySQL error: " + e.getMessage());
             }
     }
 
@@ -78,7 +78,7 @@ public class MySQL {
                             return;
                         }
                         e.printStackTrace();
-                        System.out.println("[SkinsRestorer] MySQL error: " + e.getMessage());
+                        System.out.println("[SkinPlugin] MySQL error: " + e.getMessage());
                     }
                 }
 
@@ -93,7 +93,7 @@ public class MySQL {
         try {
             return con != null && !con.isClosed();
         } catch (SQLException e) {
-            System.out.println("[SkinsRestorer] MySQL error: " + e.getMessage());
+            System.out.println("[SkinPlugin] MySQL error: " + e.getMessage());
         }
         return false;
     }
@@ -106,10 +106,10 @@ public class MySQL {
                     try {
                         con = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + database + "?verifyServerCertificate=false&useSSL=false",
                                 username, password);
-                        System.out.println("[SkinsRestorer] Connected to MySQL!");
+                        System.out.println("[SkinPlugin] Connected to MySQL!");
                         createTable();
                     } catch (SQLException e) {
-                        System.out.println("[SkinsRestorer] Could NOT connect to MySQL: " + e.getMessage());
+                        System.out.println("[SkinPlugin] Could NOT connect to MySQL: " + e.getMessage());
                     }
                 }
 
@@ -132,7 +132,7 @@ public class MySQL {
                 return prepareStatement(query, vars);
             }
         } catch (SQLException e) {
-            System.out.println("[SkinsRestorer] MySQL error: " + e.getMessage());
+            System.out.println("[SkinPlugin] MySQL error: " + e.getMessage());
         }
 
         return null;
@@ -159,7 +159,7 @@ public class MySQL {
                                 return crs;
 
                         } catch (SQLException e) {
-                            System.out.println("[SkinsRestorer] MySQL error: " + e.getMessage());
+                            System.out.println("[SkinPlugin] MySQL error: " + e.getMessage());
                         }
 
                         return null;
@@ -170,7 +170,7 @@ public class MySQL {
                     rowSet = future.get();
 
             } catch (Exception e) {
-                System.out.println("[SkinsRestorer] MySQL error: " + e.getMessage());
+                System.out.println("[SkinPlugin] MySQL error: " + e.getMessage());
             }
         else {
             openConnection();

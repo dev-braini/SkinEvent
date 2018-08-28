@@ -8,8 +8,8 @@ Entwickler-Prüfungsaufgabe für die Bewerbung bei GrieferGames.net im Bereich _
 
 
 * Ändere deinen Skin - Jeder Skin der je auf Mojang geladen wurde ist erlaubt
-* Starte einen SkinEvent, in welchem alle Spieler auf dem Server, nach einer Abstimmung, denselben Skin erhalten
-* Adminrechte: Ändere den Skin eines anderen Spielers / Starte den SkinEvent ohne Abstimmung
+* Starte einen Skin-Event, in welchem alle Spieler auf dem Server, nach einer Abstimmung, denselben Skin erhalten
+* Adminrechte: Ändere den Skin eines anderen Spielers / Starte den Skin-Event ohne Abstimmung
 * BungeeCord support - Die Skins bleiben auch bei einem Serverwechsel erhalten
 * Keine Client-Modifikationen nötig
 * MySQL-Datenbank
@@ -19,8 +19,8 @@ Entwickler-Prüfungsaufgabe für die Bewerbung bei GrieferGames.net im Bereich _
     /skin set <username>                       Ändere deinen Skin in den angegebenen Spieler (alle 10 Minuten)
     /skin <username>                           Kurzversion von /skin set
     /skin clear                                Setze deinen Skin zurück
-    /skin event                                Starte einen SkinEvent (alle 60 Minuten)
-    /skin vote <yes/no>                        Stimme ab, ob ein SkinEvent durchgeführt werden soll
+    /skin event                                Starte einen Skin-Event (alle 60 Minuten)
+    /skin vote <yes/no>                        Stimme ab, ob ein Skin-Event durchgeführt werden soll
                 
     /sr set <player> <username>                Ändert den Skin von einem Spieler...
 
