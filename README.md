@@ -22,7 +22,7 @@ Entwickler-Prüfungsaufgabe für die Bewerbung bei GrieferGames.net im Bereich _
     /skin event                                Starte einen Skin-Event (alle 60 Minuten)
     /skin vote <yes/no>                        Stimme ab, ob ein Skin-Event durchgeführt werden soll
                 
-    /sr set <player> <username>                Ändert den Skin von einem Spieler...
+    /sr set <player> <username>                Admin: Ändert den Skin von einem Spieler...
 
 _Die Skins sind 10 Minuten gültig._ Danach werden Sie beim nächsten Reload zurückgesetzt.
 
