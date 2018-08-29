@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com</groupId>
-    <artifactId>skinsrestorer</artifactId>
+    <artifactId>skinevent</artifactId>
     <version>0.9</version>
     <packaging>jar</packaging>
 
-    <name>SkinsRestorer</name>
+    <name>SkinEvent</name>
     <description>Ability to restore/change skins on servers! (Offline and Online Mode)</description>
 
     <properties>
@@ -127,7 +127,7 @@
         </dependency>
     </dependencies>
     <build>
-        <finalName>SkinsRestorer</finalName>
+        <finalName>SkinEvent</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -138,11 +138,11 @@
                     <relocations>
                         <relocation>
                             <pattern>org.bstats</pattern>
-                            <shadedPattern>skinsrestorer.shared.utils.metrics</shadedPattern>
+                            <shadedPattern>skinevent.shared.utils.metrics</shadedPattern>
                         </relocation>
                         <relocation>
                             <pattern>org.inventivetalent</pattern>
-                            <shadedPattern>skinsrestorer.shared.utils.updater</shadedPattern>
+                            <shadedPattern>skinevent.shared.utils.updater</shadedPattern>
                         </relocation>
                     </relocations>
                 </configuration>

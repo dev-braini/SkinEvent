@@ -1,28 +1,28 @@
 name: ${project.name}
-main: skinsrestorer.bukkit.SkinsRestorer
+main: skinevent.bukkit.SkinEvent
 version: ${project.version}
 description: ${project.description}
 website: https://github.com/dev-braini/SkinEvent
 authors: [braini]
 softdepend: [Multiverse-Core, MultiWorld]
 commands:
-  skinsrestorer:
+  skinevent:
     aliases: [sr]
     description: Admin commands.
   skin:
     description: Main command.
 permissions:
-   skinsrestorer.playercmds:
+   skinevent.playercmds:
      description: Allows access to all main commands.
      default: op
-   skinsrestorer.playercmds.menu:
+   skinevent.playercmds.menu:
      description: Allows access to the /skins command.
-   skinsrestorer.cmds:
+   skinevent.cmds:
      description: Allows access to administrative commands.
      default: op
-   skinsrestorer.bypasscooldown:
+   skinevent.bypasscooldown:
      description: Bypasses any set cooldowns in the config.
      default: op
-   skinsrestorer.bypassdisabled:
+   skinevent.bypassdisabled:
      description: Allows access to disabled skins in the config.
      default: op

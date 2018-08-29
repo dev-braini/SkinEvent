@@ -1,6 +1,6 @@
 Unterstützte Versionen: 1.7.10 - 1.12.x
 
-# SkinPlugin
+# SkinEvent
 ## Beschreibung
 Entwickler-Prüfungsaufgabe für die Bewerbung bei GrieferGames.net im Bereich _Spigot & Bungeecord Entwicklung_.
 
@@ -46,4 +46,4 @@ _Die Skins sind 10 Minuten gültig._ Danach werden Sie beim nächsten Reload zur
 2. Aktiviere BungeeCord support in der Spigot Konfiguration (`bungeecord: true` in spigot.yml)
 
 ## Lizenz
-SkinPlugin ist lizenziert unter  GNU General Public License v3.0. Bitte lies [`LICENSE.txt`](hhttps://github.com/dev-braini/SkinEvent/blob/master/LICENSE) für mehr Informationen.
+SkinEvent ist lizenziert unter  GNU General Public License v3.0. Bitte lies [`LICENSE.txt`](hhttps://github.com/dev-braini/SkinEvent/blob/master/LICENSE) für mehr Informationen.

@@ -1,4 +1,4 @@
-name: SkinsRestorer
-main: skinsrestorer.bungee.SkinsRestorer
+name: SkinEvent
+main: skinevent.bungee.SkinEvent
 version: ${project.version}
 author: braini
