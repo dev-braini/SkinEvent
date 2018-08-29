@@ -446,7 +446,7 @@ public class SkinStorage {
                     return createProperty("textures", value, signature);
 
                 } catch (Exception e) {
-                    System.out.println("[SkinsRestorer] Unsupported player format.. removing (" + name + ").");
+                    System.out.println("[SkinEvent] Unsupported player format.. removing (" + name + ").");
                 }
 
             return null;
@@ -476,7 +476,7 @@ public class SkinStorage {
                 return SkinStorage.createProperty("textures", value, signature);
 
             } catch (Exception e) {
-                System.out.println("[SkinsRestorer] Unsupported player format.. removing (" + name + ").");
+                System.out.println("[SkinEvent] Unsupported player format.. removing (" + name + ").");
             }
 
             return null;

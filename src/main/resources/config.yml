@@ -1,6 +1,6 @@
-##############################
-#  SkinsRestorer Config.yml  #
-##############################
+###############################
+#    SkinPlugin Config.yml    #
+###############################
 
 # If set to true, /skin can be used without a permission.
 SkinWithoutPerm: false
@@ -32,14 +32,14 @@ MultiBungee:
 
 # Settings for MySQL skin storage (recommended for big BungeeCord networks)
 MySQL:
-  Enabled: false
+  Enabled: true
   Host: localhost
   Port: 3306
-  Database: db
+  Database: SkinEvent
   SkinTable: Skins
   PlayerTable: Players
   Username: root
-  Password: pass
+  Password: tor
 
 # Enable or disable the updater.
 Updater:

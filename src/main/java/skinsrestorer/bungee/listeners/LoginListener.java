@@ -31,9 +31,9 @@ public class LoginListener implements Listener {
     @EventHandler (priority = EventPriority.HIGHEST)
     public void onServerConnect(ServerConnectEvent e) {
         ProxyServer.getInstance().getScheduler().runAsync(SkinsRestorer.getInstance(), () -> {
-            if (Config.UPDATER_ENABLED && SkinsRestorer.getInstance().isOutdated()
+            /*if (Config.UPDATER_ENABLED && SkinsRestorer.getInstance().isOutdated()
                     && e.getPlayer().hasPermission("skinsrestorer.cmds"))
-                e.getPlayer().sendMessage(new TextComponent(C.c(Locale.OUTDATED)));
+                e.getPlayer().sendMessage(new TextComponent(C.c(Locale.OUTDATED)));*/
 
             if (Config.DISABLE_ONJOIN_SKINS)
                 return;

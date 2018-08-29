@@ -16,28 +16,22 @@ Entwickler-Prüfungsaufgabe für die Bewerbung bei GrieferGames.net im Bereich _
 
 ## Kommandos
 
-    /skin set <username>                       Ändere deinen Skin in den angegebenen Spieler (alle 10 Minuten)
-    /skin <username>                           Kurzversion von /skin set
-    /skin clear                                Setze deinen Skin zurück
-    /skin event                                Starte einen Skin-Event (alle 60 Minuten)
-    /skin vote <yes/no>                        Stimme ab, ob ein Skin-Event durchgeführt werden soll
+    /skin set <username>                  Ändere deinen Skin in den angegebenen Spieler (alle 10 Minuten)
+    /skin <username>                      Kurzversion von /skin set
+    /skin clear                           Setze deinen Skin zurück
+    /skin event                           Starte einen Skin-Event (alle 60 Minuten)
+    /skin vote <yes/no>                   Stimme ab, ob ein Skin-Event durchgeführt werden soll
                 
-    /sr set <player> <username>                Admin: Ändert den Skin von einem Spieler...
+    /sr set <player> <username>           Admin: Ändert den Skin von einem Spieler...
 
 _Die Skins sind 10 Minuten gültig._ Danach werden Sie beim nächsten Reload zurückgesetzt.
 
 ## Rechte
 
-* changeskin.command.skinupdate - Command to refresh a player's own skin
-* changeskin.command.skinupdate.other.uuid - Allows to update the skin of that specific user
-* changeskin.command.skinupdate.other.* - Allowed to update the skins of all players
-* changeskin.command.setskin.* - Includes all the commands below
-* changeskin.command.setskin - Set your own skin
-* changeskin.command.setskin.other - Set the skin of other players
-* changeskin.command.skinselect - Select a skin from the database
-* changeskin.command.skinupload - Upload a skin to one of the configured accounts
-* changeskin.command.skinskull - Use the skull command
-* changeskin.command.skininfo - Use the info command
+    skinevent.skinupdate                  Eigenen Skin ändern und zurücksetzen
+    skinevent.startevent                  Skin-Event starten
+    skinevent.admin.startevent            Skin-Event (ohne Abstimmung) starten
+    skinevent.admin.skinupdate            Skin von anderen Spielern ändern
 
 ## Requirements
 

@@ -9,25 +9,22 @@ import java.lang.reflect.Field;
 public class Locale {
 
     public static String SR_LINE = "&7&m----------------------------------------";
-    public static String PLAYER_HAS_NO_PERMISSION = "&e[&2SkinsRestorer&e] &4Error&8: &cDu hast keine Rechte dies zu tun.";
+    public static String PLAYER_HAS_NO_PERMISSION = "&e[&2SkinsRestorer&e] &4Fehler&8: &cDu hast keine Rechte dies zu tun.";
     public static String HELP_PLAYER = "  &2&lSkinPlugin &7- &f&lv%ver%"
-            + "\n   &2/skin set <skinname> &7-&f Ändere deinen Skin."
+            + "\n   &2/skin set <skinname> &7-&f Aendere deinen Skin."
             + "\n    &2/skin <skinname> &7-&f Kurzversion von \"/skin set\"."
-            + "\n    &2/skin clear &7-&f Setzt deinen Skin zurück."
+            + "\n    &2/skin clear &7-&f Setzt deinen Skin zurueck."
             + "\n    &2/skin event &7-&f Starte einen Skin-Event.";
-    public static String HELP_SR = "    &2/sr &7- &fDisplay admin commands.";
-    public static String NOT_PREMIUM = "&e[&2SkinPlugin&e] &4Error&8: &cPremium player mit diesem Namen existiert nicht.";
-    public static String SKIN_COOLDOWN_NEW = "&e[&2SkinPlugin&e] &4Error&8: &cDu kannst deinen Skin nur alle &e%s &cseconds ändern.";
-    public static String SKIN_CHANGE_SUCCESS = "&e[&2SkinPlugin&e] &2Dein Skin wurde geändert.";
-    public static String SKIN_CLEAR_SUCCESS = "&e[&2SkinPlugin&e] &2Dein Skin wurde zurückgesetzt.";
+    public static String HELP_SR = "    &2/sr &7- &fZeige Admin Kommandos.";
+    public static String NOT_PREMIUM = "&e[&2SkinPlugin&e] &4Fehler&8: &cPremium player mit diesem Namen existiert nicht.";
+    public static String SKIN_COOLDOWN_NEW = "&e[&2SkinPlugin&e] &4Fehler&8: &cDu kannst deinen Skin nur alle &e%s &csekunden aendern.";
+    public static String SKIN_CHANGE_SUCCESS = "&e[&2SkinPlugin&e] &2Dein Skin wurde geaendert.";
+    public static String SKIN_CLEAR_SUCCESS = "&e[&2SkinPlugin&e] &2Dein Skin wurde zurueckgesetzt.";
     public static String HELP_ADMIN = "  &2&lSkinPlugin &7- &f&lv%ver% &c&lAdmin"
             + "\n\n   &2/sr config &7- &fhelp page for usefull in game config settings"
-            + "\n    &2/sr set <player> <skin name> &7- &fChanges the skin of a player.."
-            + "\n    &2/sr drop <player> &7- &fDrops player skin data."
-            + "\n    &2/sr reload &7- &fReloads the config and locale"
-            + "\n    &2/sr props [player] &7- &fDisplays the players actual skin as properties";
+            + "\n    &2/sr set <player> <skinname> &7- &fAendert den Skin eines Spielers...";
     public static String ADMIN_SET_SKIN = "&e[&2SkinPlugin&e] &2You set %player's skin.";
-    public static String NOT_ONLINE = "&e[&2SkinPlugin&e] &4Error&8: &cSpieler ist nicht online!";
+    public static String NOT_ONLINE = "&e[&2SkinPlugin&e] &4Fehler&8: &cSpieler ist nicht online!";
     public static String SKIN_DATA_DROPPED = "&e[&2SkinPlugin&e] &2Skin data for player %player dropped.";
     public static String RELOAD = "&e[&2SkinPlugin&e] &2Config and Locale has been reloaded!";
     public static String HELP_CONFIG = "  &2&lSkinsRestorer &7- &c&lConfig"
@@ -38,7 +35,7 @@ public class Locale {
             + "\n    &2/sr defaultSkins <true/false/add [skin]> &7- &fConfigures the DefaultSkins section."
             + "\n    &2/sr updater <true/false> &7- &fToggles the updater";
     public static String SKIN_DISABLED = "&e[&2SkinPlugin&e] &4Error&8: &cThis skin is disabled by an administrator.";
-    public static String ALT_API_FAILED = "&e[&2SkinPlugin&e] &4Error&8: &cSkin Data API ist überlastet, bitte versuche es später noch einmal!";
+    public static String ALT_API_FAILED = "&e[&2SkinPlugin&e] &4Error&8: &cSkin Data API ist ueberlastet, bitte versuche es saeäter noch einmal!";
     public static String NO_SKIN_DATA = "&e[&2SkinPlugin&e] &4Error&8: &cNo skin data acquired! Does this player have a skin?";
     public static String STATUS_OK = "&e[&2SkinPlugin&e] &2Mojang API connection successful!";
     public static String GENERIC_ERROR = "&e[&2SkinPlugin&e] &4Error&8: &cAn error occurred while requesting skin data, please try again later!";

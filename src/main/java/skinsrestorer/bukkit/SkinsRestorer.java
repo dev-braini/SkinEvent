@@ -178,9 +178,9 @@ public class SkinsRestorer extends JavaPlugin {
                                     if (!skinEventInventory.getPlayerVoted().contains(player)) {
                                         skinEventInventory.getPlayerVoted().add(player);
                                         skinEventInventory.incYesVotes();
-                                        sendMessageToPlayer(player, "Danke für deine Stimme - §aJA");
+                                        sendMessageToPlayer(player, "Danke fuer deine Stimme - §aJA");
                                     } else sendMessageToPlayer(player, "§4Du hast bereits abgestimmt!");
-                                } else sendMessageToPlayer(player, "§4Momentan läuft kein SkinEvent!");
+                                } else sendMessageToPlayer(player, "§4Momentan laeuft kein SkinEvent!");
 
                             } catch (Exception e) {
                                 e.printStackTrace();
@@ -206,9 +206,9 @@ public class SkinsRestorer extends JavaPlugin {
                                     if(!skinEventInventory.getPlayerVoted().contains(player)) {
                                         skinEventInventory.getPlayerVoted().add(player);
                                         skinEventInventory.incNoVotes();
-                                        sendMessageToPlayer(player, "Danke für deine Stimme - §4NEIN");
+                                        sendMessageToPlayer(player, "Danke fuer deine Stimme - §4NEIN");
                                     } else sendMessageToPlayer(player, "§4Du hast bereits abgestimmt!");
-                                } else sendMessageToPlayer(player, "§4Momentan läuft kein SkinEvent!");
+                                } else sendMessageToPlayer(player, "§4Momentan laeuft kein SkinEvent!");
 
                             } catch (Exception e) {
                                 e.printStackTrace();
@@ -249,7 +249,7 @@ public class SkinsRestorer extends JavaPlugin {
                     });
                 }
             });
-            if (Config.UPDATER_ENABLED) {
+            /*if (Config.UPDATER_ENABLED) {
                 updater.checkForUpdate(new UpdateCallback() {
                     @Override
                     public void updateAvailable(String newVersion, String downloadUrl, boolean hasDirectDownload) {
@@ -287,7 +287,7 @@ public class SkinsRestorer extends JavaPlugin {
                         console.sendMessage("§e[§2SkinEvent§e] §a----------------------------------------------");
                     }
                 });
-            } else {
+            } else {*/
                 console.sendMessage("§e[§2SkinEvent§e] §a----------------------------------------------");
                 console.sendMessage("§e[§2SkinEvent§e] §a    +================+");
                 console.sendMessage("§e[§2SkinEvent§e] §a    |   SkinPlugin   |");
@@ -297,7 +297,7 @@ public class SkinsRestorer extends JavaPlugin {
                 console.sendMessage("§e[§2SkinEvent§e] §a----------------------------------------------");
                 console.sendMessage("§e[§2SkinEvent§e] §b    Current version: §a" + getVersion());
                 console.sendMessage("§e[§2SkinEvent§e] §a----------------------------------------------");
-            }
+            //}
 
             return;
         }
@@ -358,7 +358,7 @@ public class SkinsRestorer extends JavaPlugin {
             }
         }, this);
 
-        Bukkit.getScheduler().runTaskAsynchronously(this, new Runnable() {
+        /*Bukkit.getScheduler().runTaskAsynchronously(this, new Runnable() {
 
             @Override
             public void run() {
@@ -409,7 +409,7 @@ public class SkinsRestorer extends JavaPlugin {
                         }
             }
 
-        });
+        });*/
 
     }
 }

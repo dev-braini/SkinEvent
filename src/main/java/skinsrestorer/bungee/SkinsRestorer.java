@@ -140,7 +140,17 @@ public class SkinsRestorer extends Plugin {
         multibungee = Config.MULTIBUNGEE_ENABLED
                 || ProxyServer.getInstance().getPluginManager().getPlugin("RedisBungee") != null;
 
-        exe.submit(new Runnable() {
+
+        CommandSender console = getProxy().getConsole();
+        console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §a----------------------------------------------"));
+        console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §a    +================+"));
+        console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §a    |   SkinPlugin   |"));
+        console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §a    +================+"));
+        console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §a----------------------------------------------"));
+        console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §b    Current version: §a" + getVersion()));
+        console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §a----------------------------------------------"));
+
+        /*exe.submit(new Runnable() {
 
             @Override
             public void run() {
@@ -170,14 +180,6 @@ public class SkinsRestorer extends Plugin {
                         console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §e    https://www.spigotmc.org/resources/skinsrestorer.2124"));
                         console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §a----------------------------------------------"));
                     }
-                } else {
-                        console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §a----------------------------------------------"));
-                        console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §a    +================+"));
-                        console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §a    |   SkinPlugin   |"));
-                        console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §a    +================+"));
-                        console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §a----------------------------------------------"));
-                        console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §b    Current version: §a" + getVersion()));
-                        console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §a----------------------------------------------"));
                 }
 
                 if (Config.DEFAULT_SKINS_ENABLED)
@@ -190,6 +192,6 @@ public class SkinsRestorer extends Plugin {
                         }
             }
 
-        });
+        });*/
     }
 }

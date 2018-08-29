@@ -77,7 +77,7 @@ public class EventStartmode implements Listener {
 
     public void showInventory(Player p) {
         if(isRunning) {
-            plugin.sendMessageToPlayer(p, "§4Es läuft bereits ein SkinEvent.");
+            plugin.sendMessageToPlayer(p, "§4Es laeuft bereits ein SkinEvent.");
             return;
         }
         this.sender = p;
@@ -91,8 +91,8 @@ public class EventStartmode implements Listener {
         isRunning = true;
 
         plugin.sendBroadcastMessage(sender.getDisplayName() + " hat eine Umfrage gestartet.");
-        plugin.sendBroadcastMessage("§e/skin vote yes §f für §aJA");
-        plugin.sendBroadcastMessage("§e/skin vote no  §f für §4NEIN");
+        plugin.sendBroadcastMessage("§e/skin vote yes §f fuer §aJA");
+        plugin.sendBroadcastMessage("§e/skin vote no  §f fuer §4NEIN");
 
         // check survey for one minute
         final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
