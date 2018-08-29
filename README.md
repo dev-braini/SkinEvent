@@ -30,8 +30,7 @@ _Die Skins sind 10 Minuten gültig._ Danach werden Sie beim nächsten Reload zur
 
     skinevent.skinupdate                  Eigenen Skin ändern und zurücksetzen
     skinevent.startevent                  Skin-Event starten
-    skinevent.admin.startevent            Skin-Event (ohne Abstimmung) starten
-    skinevent.admin.skinupdate            Skin von anderen Spielern ändern
+    skinevent.admin                       Skin von anderen Spielern ändern / Event (ohne Abstimmung) starten
 
 ## Requirements
 

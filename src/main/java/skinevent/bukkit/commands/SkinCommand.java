@@ -22,7 +22,7 @@ public class SkinCommand implements CommandExecutor {
         if (!Locale.SR_LINE.isEmpty())
             p.sendMessage(Locale.SR_LINE);
         p.sendMessage(Locale.HELP_PLAYER.replace("%ver%", SkinEvent.getInstance().getVersion()));
-        if (p.hasPermission("skinevent.cmds") || p.isOp())
+        if (p.hasPermission("skinevent.skinupdate") || p.isOp())
             p.sendMessage(Locale.HELP_SR);
         if (!Locale.SR_LINE.isEmpty())
             p.sendMessage(Locale.SR_LINE);
@@ -41,7 +41,7 @@ public class SkinCommand implements CommandExecutor {
         // Skin Help
         if (args.length == 0 || args.length > 2) {
             if (!Config.SKINWITHOUTPERM) {
-                if (p.hasPermission("skinevent.playercmds")) {
+                if (p.hasPermission("skinevent.skinupdate")) {
                     help(p);
                 } else {
                     p.sendMessage(Locale.PLAYER_HAS_NO_PERMISSION);

@@ -28,7 +28,7 @@ public class AdminCommands extends Command {
     @SuppressWarnings("deprecation")
     @Override
     public void execute(final CommandSender sender, final String[] args) {
-        if (sender.hasPermission("skinevent.cmds")) {
+        if (sender.hasPermission("skinevent.admin")) {
             if (args.length == 1 && args[0].equalsIgnoreCase("reload")) {
                 Locale.load();
                 Config.load(SkinEvent.getInstance().getResourceAsStream("config.yml"));

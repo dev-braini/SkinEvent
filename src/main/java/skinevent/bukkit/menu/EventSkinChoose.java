@@ -53,7 +53,7 @@ public class EventSkinChoose implements Listener {
 
         inv.clear();
         inv.setItem(0, AbgegerieftHD);
-        inv.setItem(1, LordVarus);
+        /*inv.setItem(1, LordVarus);
         inv.setItem(2, Bantor);
         inv.setItem(3, Backz);
         inv.setItem(4, RypexYT);
@@ -70,7 +70,7 @@ public class EventSkinChoose implements Listener {
         inv.setItem(23, Villager);
         inv.setItem(24, Turtle);
         inv.setItem(25, Guardian);
-        inv.setItem(26, Wither);
+        inv.setItem(26, Wither);*/
         Bukkit.getServer().getPluginManager().registerEvents(this, p);
     }
 

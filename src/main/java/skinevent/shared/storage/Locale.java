@@ -9,7 +9,7 @@ import java.lang.reflect.Field;
 public class Locale {
 
     public static String SR_LINE = "&7&m----------------------------------------";
-    public static String PLAYER_HAS_NO_PERMISSION = "&e[&2SkinEvent&e] &4Fehler&8: &cDu hast keine Rechte dies zu tun.";
+    public static String PLAYER_HAS_NO_PERMISSION = "&e[&2SkinEvent&e] &4Fehler&8: &cDu hast keine Berechtigung.";
     public static String HELP_PLAYER = "  &2&lSkinEvent &7- &f&lv%ver%"
             + "\n   &2/skin set <skinname> &7-&f Aendere deinen Skin."
             + "\n    &2/skin <skinname> &7-&f Kurzversion von \"/skin set\"."
@@ -21,7 +21,6 @@ public class Locale {
     public static String SKIN_CHANGE_SUCCESS = "&e[&2SkinEvent&e] &2Dein Skin wurde geaendert.";
     public static String SKIN_CLEAR_SUCCESS = "&e[&2SkinEvent&e] &2Dein Skin wurde zurueckgesetzt.";
     public static String HELP_ADMIN = "  &2&lSkinEvent &7- &f&lv%ver% &c&lAdmin"
-            + "\n\n   &2/sr config &7- &fhelp page for usefull in game config settings"
             + "\n    &2/sr set <player> <skinname> &7- &fAendert den Skin eines Spielers...";
     public static String ADMIN_SET_SKIN = "&e[&2SkinEvent&e] &2You set %player's skin.";
     public static String NOT_ONLINE = "&e[&2SkinEvent&e] &4Fehler&8: &cSpieler ist nicht online!";

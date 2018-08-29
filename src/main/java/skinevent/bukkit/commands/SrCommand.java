@@ -33,9 +33,7 @@ public class SrCommand implements CommandExecutor {
     @Override
     public boolean onCommand(final CommandSender sender, Command arg1, String arg2, String[] args) {
 
-        if (sender.hasPermission("skinevent.cmds")) {
-
-
+        if (sender.hasPermission("skinevent.admin")) {
             if (args.length == 0) {
                 if (!Locale.SR_LINE.isEmpty())
                     sender.sendMessage(Locale.SR_LINE);

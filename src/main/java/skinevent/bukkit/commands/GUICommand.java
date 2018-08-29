@@ -20,7 +20,7 @@ public class GUICommand implements CommandExecutor {
 
         final Player p = (Player) sender;
 
-        if (!p.hasPermission("skinevent.playercmds")) {
+        if (!p.hasPermission("skinevent.skinupdate")) {
             p.sendMessage(Locale.PLAYER_HAS_NO_PERMISSION);
             return true;
         }
