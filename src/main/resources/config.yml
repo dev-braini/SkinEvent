@@ -6,10 +6,13 @@
 SkinWithoutPerm: false
 
 # How long are the skins stored in database (in minutes)
-SkinExpiresAfter: 1584
+SkinExpiresAfter: 10
 
 # Timeout for skin changing (set to 0 to disable)
-SkinChangeCooldown: 30
+SkinChangeCooldown: 600
+
+# Timeout for skin event (set to 0 to disable)
+SkinChangeCooldown: 3600
  
 # Enable or disable default skins
 # If there is more than one, the plugin will choose a random one.
