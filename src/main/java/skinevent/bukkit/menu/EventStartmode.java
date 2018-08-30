@@ -15,6 +15,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.material.Wool;
 import skinevent.bukkit.SkinEvent;
+import skinevent.shared.storage.SkinEventCooldownStorage;
 
 import java.util.*;
 import java.util.concurrent.Executors;
@@ -146,6 +147,7 @@ public class EventStartmode implements Listener {
 
             if (clickedDisplayName.contains("Nein")) forceChange = true;
             if(!clickedDisplayName.contains("Abbrechen")) eventSkinChoose.showInventory(player, forceChange);
+            else SkinEventCooldownStorage.resetCooldown(player.getName());
         }
     }
 }
