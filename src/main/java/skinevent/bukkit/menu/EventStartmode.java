@@ -147,7 +147,6 @@ public class EventStartmode implements Listener {
 
             if (clickedDisplayName.contains("Nein")) forceChange = true;
             if(!clickedDisplayName.contains("Abbrechen")) eventSkinChoose.showInventory(player, forceChange);
-            else SkinEventCooldownStorage.resetCooldown(player.getName());
         }
     }
 }

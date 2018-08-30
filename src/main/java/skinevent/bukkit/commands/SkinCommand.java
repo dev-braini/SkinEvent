@@ -71,7 +71,7 @@ public class SkinCommand implements CommandExecutor {
                 final String skin = sb.toString();
 
                 if (Config.DISABLED_SKINS_ENABLED)
-                    if (!p.hasPermission("skinevent.bypassdisabled") && !p.isOp()) {
+                    if (!p.hasPermission("skinevent.admin") && !p.isOp()) {
                         for (String dskin : Config.DISABLED_SKINS)
                             if (skin.equalsIgnoreCase(dskin)) {
                                 p.sendMessage(Locale.SKIN_DISABLED);
@@ -79,7 +79,7 @@ public class SkinCommand implements CommandExecutor {
                             }
                     }
 
-                if (p.hasPermission("skinevent.bypasscooldown")) {
+                if (p.hasPermission("skinevent.admin")) {
 
                 } else {
                     if (SkinChangeCooldownStorage.hasCooldown(p.getName())) {
@@ -119,7 +119,7 @@ public class SkinCommand implements CommandExecutor {
                 final String skin = sb.toString();
 
                 if (Config.DISABLED_SKINS_ENABLED)
-                    if (!p.hasPermission("skinevent.bypassdisabled") && !p.isOp()) {
+                    if (!p.hasPermission("skinevent.admin") && !p.isOp()) {
                         for (String dskin : Config.DISABLED_SKINS)
                             if (skin.equalsIgnoreCase(dskin)) {
                                 p.sendMessage(Locale.SKIN_DISABLED);
@@ -127,7 +127,7 @@ public class SkinCommand implements CommandExecutor {
                             }
                     }
 
-                if (p.hasPermission("skinevent.bypasscooldown")) {
+                if (p.hasPermission("skinevent.admin")) {
 
                 } else {
                     if (SkinChangeCooldownStorage.hasCooldown(p.getName())) {

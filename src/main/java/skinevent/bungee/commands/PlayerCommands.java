@@ -82,7 +82,7 @@ public class PlayerCommands extends Command {
                 }
             } else if (args[0].equalsIgnoreCase("event")) {
                 if (p.hasPermission("skinevent.skinupdate")) {
-                    if (!p.hasPermission("skinevent.bypasscooldown") && SkinEventCooldownStorage.hasCooldown(p.getName())) {
+                    if (!p.hasPermission("skinevent.admin") && SkinEventCooldownStorage.hasCooldown(p.getName())) {
                         p.sendMessage(new TextComponent(Locale.SKIN_EVENT_COOLDOWN_NEW.replace("%s", "" + SkinEventCooldownStorage.getCooldown(p.getName()))));
                         return;
                     }
@@ -109,7 +109,7 @@ public class PlayerCommands extends Command {
                     final String skin = sb.toString();
 
                     if (Config.DISABLED_SKINS_ENABLED)
-                        if (!p.hasPermission("skinevent.bypassdisabled")) {
+                        if (!p.hasPermission("skinevent.admin")) {
                             for (String dskin : Config.DISABLED_SKINS)
                                 if (skin.equalsIgnoreCase(dskin)) {
                                     p.sendMessage(new TextComponent(Locale.SKIN_DISABLED));
@@ -117,7 +117,7 @@ public class PlayerCommands extends Command {
                                 }
                         }
 
-                    if (!p.hasPermission("skinevent.bypasscooldown") && SkinChangeCooldownStorage.hasCooldown(p.getName())) {
+                    if (!p.hasPermission("skinevent.admin") && SkinChangeCooldownStorage.hasCooldown(p.getName())) {
                         p.sendMessage(new TextComponent(Locale.SKIN_COOLDOWN_NEW.replace("%s", "" + SkinChangeCooldownStorage.getCooldown(p.getName()))));
                         return;
                     }
@@ -157,7 +157,7 @@ public class PlayerCommands extends Command {
                     final String skin = sb.toString();
 
                     if (Config.DISABLED_SKINS_ENABLED)
-                        if (!p.hasPermission("skinevent.bypassdisabled")) {
+                        if (!p.hasPermission("skinevent.admin")) {
                             for (String dskin : Config.DISABLED_SKINS)
                                 if (skin.equalsIgnoreCase(dskin)) {
                                     p.sendMessage(new TextComponent(Locale.SKIN_DISABLED));
@@ -165,7 +165,7 @@ public class PlayerCommands extends Command {
                                 }
                         }
 
-                    if (!p.hasPermission("skinevent.bypasscooldown") && SkinChangeCooldownStorage.hasCooldown(p.getName())) {
+                    if (!p.hasPermission("skinevent.admin") && SkinChangeCooldownStorage.hasCooldown(p.getName())) {
                         p.sendMessage(new TextComponent(Locale.SKIN_COOLDOWN_NEW.replace("%s", "" + SkinChangeCooldownStorage.getCooldown(p.getName()))));
                         return;
                     }
