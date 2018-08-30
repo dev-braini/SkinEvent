@@ -57,7 +57,7 @@ public class LoginListener implements Listener {
                 public void run() {
                     SkinApplier.applySkin(e.getPlayer());
                 }
-            }, 2000, TimeUnit.MILLISECONDS);
+            }, 500, TimeUnit.MILLISECONDS);
         });
     }
 }

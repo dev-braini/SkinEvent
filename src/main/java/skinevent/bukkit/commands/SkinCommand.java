@@ -7,7 +7,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import skinevent.bukkit.SkinEvent;
 import skinevent.shared.storage.Config;
-import skinevent.shared.storage.CooldownStorage;
+import skinevent.shared.storage.SkinChangeCooldownStorage;
 import skinevent.shared.storage.Locale;
 import skinevent.shared.storage.SkinStorage;
 import skinevent.shared.utils.MojangAPI;
@@ -82,14 +82,14 @@ public class SkinCommand implements CommandExecutor {
                 if (p.hasPermission("skinevent.bypasscooldown")) {
 
                 } else {
-                    if (CooldownStorage.hasCooldown(p.getName())) {
-                        p.sendMessage(Locale.SKIN_COOLDOWN_NEW.replace("%s", "" + CooldownStorage.getCooldown(p.getName())));
+                    if (SkinChangeCooldownStorage.hasCooldown(p.getName())) {
+                        p.sendMessage(Locale.SKIN_COOLDOWN_NEW.replace("%s", "" + SkinChangeCooldownStorage.getCooldown(p.getName())));
                         return true;
                     }
                 }
 
-                CooldownStorage.resetCooldown(p.getName());
-                CooldownStorage.setCooldown(p.getName(), Config.SKIN_CHANGE_COOLDOWN, TimeUnit.SECONDS);
+                SkinChangeCooldownStorage.resetCooldown(p.getName());
+                SkinChangeCooldownStorage.setCooldown(p.getName(), Config.SKIN_CHANGE_COOLDOWN, TimeUnit.MINUTES);
 
                 Bukkit.getScheduler().runTaskAsynchronously(SkinEvent.getInstance(), () -> {
                     try {
@@ -130,14 +130,14 @@ public class SkinCommand implements CommandExecutor {
                 if (p.hasPermission("skinevent.bypasscooldown")) {
 
                 } else {
-                    if (CooldownStorage.hasCooldown(p.getName())) {
-                        p.sendMessage(Locale.SKIN_COOLDOWN_NEW.replace("%s", "" + CooldownStorage.getCooldown(p.getName())));
+                    if (SkinChangeCooldownStorage.hasCooldown(p.getName())) {
+                        p.sendMessage(Locale.SKIN_COOLDOWN_NEW.replace("%s", "" + SkinChangeCooldownStorage.getCooldown(p.getName())));
                         return true;
                     }
                 }
 
-                CooldownStorage.resetCooldown(p.getName());
-                CooldownStorage.setCooldown(p.getName(), Config.SKIN_CHANGE_COOLDOWN, TimeUnit.SECONDS);
+                SkinChangeCooldownStorage.resetCooldown(p.getName());
+                SkinChangeCooldownStorage.setCooldown(p.getName(), Config.SKIN_CHANGE_COOLDOWN, TimeUnit.MINUTES);
 
                 Bukkit.getScheduler().runTaskAsynchronously(SkinEvent.getInstance(), () -> {
                     try {

@@ -4,7 +4,7 @@ import java.util.Iterator;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 
-public class CooldownStorage implements Runnable {
+public class SkinEventCooldownStorage implements Runnable {
     private static final ConcurrentHashMap<String, Long> cooldown = new ConcurrentHashMap<>();
 
     public static boolean hasCooldown(String name) {
@@ -20,9 +20,9 @@ public class CooldownStorage implements Runnable {
 
     public static int getCooldown(String name) {
         int int1 = Integer.valueOf(String.format("%d",
-                TimeUnit.MILLISECONDS.toSeconds(cooldown.get(name))));
+                TimeUnit.MILLISECONDS.toMinutes(cooldown.get(name))));
         int int2 = Integer.valueOf(String.format("%d",
-                TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis())));
+                TimeUnit.MILLISECONDS.toMinutes(System.currentTimeMillis())));
         return int1 - int2;
 
     }
@@ -34,7 +34,7 @@ public class CooldownStorage implements Runnable {
     @Override
     public void run() {
         long current = System.currentTimeMillis();
-        Iterator<Long> iterator = CooldownStorage.cooldown.values().iterator();
+        Iterator<Long> iterator = SkinEventCooldownStorage.cooldown.values().iterator();
         while (iterator.hasNext())
             if (iterator.next() <= current) {
                 iterator.remove();

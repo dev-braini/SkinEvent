@@ -28,10 +28,7 @@ import skinevent.bukkit.menu.EventStartmode;
 import skinevent.bukkit.menu.SkinsGUI;
 import skinevent.bukkit.skinfactory.SkinFactory;
 import skinevent.bukkit.skinfactory.UniversalSkinFactory;
-import skinevent.shared.storage.Config;
-import skinevent.shared.storage.CooldownStorage;
-import skinevent.shared.storage.Locale;
-import skinevent.shared.storage.SkinStorage;
+import skinevent.shared.storage.*;
 import skinevent.shared.utils.MojangAPI;
 import skinevent.shared.utils.MojangAPI.SkinRequestException;
 import skinevent.shared.utils.MySQL;
@@ -311,7 +308,8 @@ public class SkinEvent extends JavaPlugin {
         else
             SkinStorage.init(getDataFolder());
 
-        Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new CooldownStorage(), 0, 1 * 20);
+        Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new SkinChangeCooldownStorage(), 0, 1 * 20);
+        Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new SkinEventCooldownStorage(), 0, 1 * 20);
 
         // Commands
         getCommand("skinevent").setExecutor(new SrCommand());

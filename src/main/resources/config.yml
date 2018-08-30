@@ -11,11 +11,11 @@ SkinExpiresAfter: 10
 # How long are the skins valid (in minutes) - autoclear after ... minutes
 SkinInvalidAfter: 10
 
-# Timeout for skin changing (set to 0 to disable)
-SkinChangeCooldown: 600
+# Timeout for skin changing (set to 0 to disable) (in minutes)
+SkinChangeCooldown: 10
 
-# Timeout for skin event (set to 0 to disable)
-SkinChangeCooldown: 3600
+# Timeout for skin event (set to 0 to disable) (in minutes)
+SkinEventCooldown: 60
  
 # Enable or disable default skins
 # If there is more than one, the plugin will choose a random one.

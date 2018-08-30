@@ -7,10 +7,7 @@ import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Command;
 import skinevent.bungee.SkinApplier;
 import skinevent.bungee.SkinEvent;
-import skinevent.shared.storage.Config;
-import skinevent.shared.storage.CooldownStorage;
-import skinevent.shared.storage.Locale;
-import skinevent.shared.storage.SkinStorage;
+import skinevent.shared.storage.*;
 import skinevent.shared.utils.MojangAPI;
 import skinevent.shared.utils.MojangAPI.SkinRequestException;
 
@@ -66,8 +63,8 @@ public class PlayerCommands extends Command {
         if (args.length == 1) {
             if (args[0].equalsIgnoreCase("clear")) {
                 if (p.hasPermission("skinevent.skinupdate")) {
-                    CooldownStorage.resetCooldown(p.getName());
-                    CooldownStorage.setCooldown(p.getName(), Config.SKIN_CHANGE_COOLDOWN, TimeUnit.SECONDS);
+                    SkinChangeCooldownStorage.resetCooldown(p.getName());
+                    SkinChangeCooldownStorage.setCooldown(p.getName(), Config.SKIN_CHANGE_COOLDOWN, TimeUnit.MINUTES);
 
                     ProxyServer.getInstance().getScheduler().runAsync(SkinEvent.getInstance(), () -> {
                         try {
@@ -85,6 +82,13 @@ public class PlayerCommands extends Command {
                 }
             } else if (args[0].equalsIgnoreCase("event")) {
                 if (p.hasPermission("skinevent.skinupdate")) {
+                    if (!p.hasPermission("skinevent.bypasscooldown") && SkinEventCooldownStorage.hasCooldown(p.getName())) {
+                        p.sendMessage(new TextComponent(Locale.SKIN_EVENT_COOLDOWN_NEW.replace("%s", "" + SkinEventCooldownStorage.getCooldown(p.getName()))));
+                        return;
+                    }
+                    SkinEventCooldownStorage.resetCooldown(p.getName());
+                    SkinEventCooldownStorage.setCooldown(p.getName(), Config.SKIN_EVENT_COOLDOWN, TimeUnit.MINUTES);
+
                     ByteArrayOutputStream b = new ByteArrayOutputStream();
                     DataOutputStream out = new DataOutputStream(b);
                     try {
@@ -113,12 +117,10 @@ public class PlayerCommands extends Command {
                                 }
                         }
 
-                    if (!p.hasPermission("skinevent.bypasscooldown") && CooldownStorage.hasCooldown(p.getName())) {
-                        p.sendMessage(new TextComponent(Locale.SKIN_COOLDOWN_NEW.replace("%s", "" + CooldownStorage.getCooldown(p.getName()))));
+                    if (!p.hasPermission("skinevent.bypasscooldown") && SkinChangeCooldownStorage.hasCooldown(p.getName())) {
+                        p.sendMessage(new TextComponent(Locale.SKIN_COOLDOWN_NEW.replace("%s", "" + SkinChangeCooldownStorage.getCooldown(p.getName()))));
                         return;
                     }
-                    CooldownStorage.resetCooldown(p.getName());
-                    CooldownStorage.setCooldown(p.getName(), Config.SKIN_CHANGE_COOLDOWN, TimeUnit.SECONDS);
 
                     ProxyServer.getInstance().getScheduler().runAsync(SkinEvent.getInstance(), () -> {
                         try {
@@ -126,8 +128,12 @@ public class PlayerCommands extends Command {
                             SkinStorage.setPlayerSkin(p.getName(), skin);
                             SkinApplier.applySkin(p);
                             p.sendMessage(new TextComponent(Locale.SKIN_CHANGE_SUCCESS));
+
+                            SkinChangeCooldownStorage.resetCooldown(p.getName());
+                            SkinChangeCooldownStorage.setCooldown(p.getName(), Config.SKIN_CHANGE_COOLDOWN, TimeUnit.MINUTES);
                             return;
                         } catch (SkinRequestException e) {
+
                             p.sendMessage(new TextComponent(e.getReason()));
                             return;
                         }
@@ -159,12 +165,12 @@ public class PlayerCommands extends Command {
                                 }
                         }
 
-                    if (!p.hasPermission("skinevent.bypasscooldown") && CooldownStorage.hasCooldown(p.getName())) {
-                        p.sendMessage(new TextComponent(Locale.SKIN_COOLDOWN_NEW.replace("%s", "" + CooldownStorage.getCooldown(p.getName()))));
+                    if (!p.hasPermission("skinevent.bypasscooldown") && SkinChangeCooldownStorage.hasCooldown(p.getName())) {
+                        p.sendMessage(new TextComponent(Locale.SKIN_COOLDOWN_NEW.replace("%s", "" + SkinChangeCooldownStorage.getCooldown(p.getName()))));
                         return;
                     }
-                    CooldownStorage.resetCooldown(p.getName());
-                    CooldownStorage.setCooldown(p.getName(), Config.SKIN_CHANGE_COOLDOWN, TimeUnit.SECONDS);
+                    SkinChangeCooldownStorage.resetCooldown(p.getName());
+                    SkinChangeCooldownStorage.setCooldown(p.getName(), Config.SKIN_CHANGE_COOLDOWN, TimeUnit.MINUTES);
 
                     ProxyServer.getInstance().getScheduler().runAsync(SkinEvent.getInstance(), () -> {
                         try {

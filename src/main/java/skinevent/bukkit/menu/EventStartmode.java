@@ -132,8 +132,6 @@ public class EventStartmode implements Listener {
         }, 60, SECONDS);
     }
 
-
-
     @EventHandler
     public void onClick(InventoryClickEvent event) {
         Player player = (Player) event.getWhoClicked();
