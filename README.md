@@ -4,6 +4,10 @@ Unterstützte Versionen: 1.7.10 - 1.12.x
 ## Beschreibung
 Entwickler-Prüfungsaufgabe für die Bewerbung bei GrieferGames.net im Bereich _Spigot & Bungeecord Entwicklung_.
 
+Demo-Bungee-Server: 80.240.22.129
+
+[`JAR-Download (v0.9)`](https://github.com/dev-braini/SkinEvent/raw/master/JAR/SkinEvent.jar)
+
 ## Features
 
 
@@ -25,7 +29,7 @@ Entwickler-Prüfungsaufgabe für die Bewerbung bei GrieferGames.net im Bereich _
                 
     /sr set <player> <username>            Admin: Ändert den Skin von einem Spieler...
 
-_Die Skins werden nach 10 10 Minuten automatisch zurückgesetzt.
+_Die Skins werden nach 10 Minuten automatisch zurückgesetzt._
 
 ## Rechte
 
