@@ -243,7 +243,6 @@ public class AdminCommands extends Command {
                     sender.sendMessage(Locale.SR_LINE);
             }
         } else {
-            System.out.println("Permission denied (AdminCommands)");
             sender.sendMessage(Locale.PLAYER_HAS_NO_PERMISSION);
             return;
 

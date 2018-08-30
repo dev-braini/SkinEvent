@@ -43,6 +43,7 @@ public class MySQL {
         execute("CREATE TABLE IF NOT EXISTS `" + Config.MYSQL_PLAYERTABLE + "` ("
                 + "`Nick` varchar(16) COLLATE utf8_unicode_ci NOT NULL,"
                 + "`Skin` varchar(16) COLLATE utf8_unicode_ci NOT NULL,"
+                + "`timestamp` text COLLATE utf8_unicode_ci,"
                 + "PRIMARY KEY (`Nick`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci");
         execute("CREATE TABLE IF NOT EXISTS `" + Config.MYSQL_SKINTABLE + "` ("
                 + "`Nick` varchar(16) COLLATE utf8_unicode_ci NOT NULL,"

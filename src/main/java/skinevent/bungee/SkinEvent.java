@@ -5,6 +5,7 @@ import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.config.ServerInfo;
+import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.PluginMessageEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.api.plugin.Plugin;
@@ -28,6 +29,11 @@ import java.io.*;
 import java.net.URL;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
+
+import static java.util.concurrent.TimeUnit.MINUTES;
+import static java.util.concurrent.TimeUnit.SECONDS;
 
 public class SkinEvent extends Plugin {
 
@@ -191,5 +197,25 @@ public class SkinEvent extends Plugin {
             }
 
         });*/
+
+        // check players for old skin
+        final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+        final Runnable task = new Runnable() {
+            public void run() {
+                for (ProxiedPlayer p : ProxyServer.getInstance().getPlayers()) {
+                    String name = p.getName();
+
+
+                    if(!SkinStorage.getPlayerSkin(name).equalsIgnoreCase(name)) {
+                        if(SkinStorage.checkForOldSkin(p.getName())) {
+                            SkinStorage.setPlayerSkin(name, name);
+                            SkinApplier.applySkin(p);
+                            p.sendMessage(new TextComponent(Locale.SKIN_CLEAR_SUCCESS));
+                        }
+                    }
+                }
+            }
+        };
+        scheduler.scheduleAtFixedRate(task, 1, 20, SECONDS);
     }
 }

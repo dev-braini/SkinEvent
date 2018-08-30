@@ -10,7 +10,8 @@ public class Config {
 
     public static boolean DISABLE_ONJOIN_SKINS = false; // hidden
     public static boolean SKINWITHOUTPERM = false;
-    public static int SKIN_EXPIRES_AFTER = 1584;
+    public static int SKIN_EXPIRES_AFTER = 1440;
+    public static int SKIN_INVALID_AFTER = 10;
     public static int SKIN_CHANGE_COOLDOWN = 30;
     public static boolean DEFAULT_SKINS_ENABLED = false;
     public static List<String> DEFAULT_SKINS = null;
@@ -35,6 +36,7 @@ public class Config {
         SKINWITHOUTPERM = config.getBoolean("SkinWithoutPerm", SKINWITHOUTPERM);
         SKIN_CHANGE_COOLDOWN = config.getInt("SkinChangeCooldown", SKIN_CHANGE_COOLDOWN);
         SKIN_EXPIRES_AFTER = config.getInt("SkinExpiresAfter", SKIN_EXPIRES_AFTER);
+        SKIN_INVALID_AFTER = config.getInt("SkinInvalidAfter", SKIN_INVALID_AFTER);
         DEFAULT_SKINS_ENABLED = config.getBoolean("DefaultSkins.Enabled", DEFAULT_SKINS_ENABLED);
         DISABLED_SKINS_ENABLED = config.getBoolean("DisabledSkins.Enabled", DISABLED_SKINS_ENABLED);
         MULTIBUNGEE_ENABLED = config.getBoolean("MultiBungee.Enabled", MULTIBUNGEE_ENABLED);

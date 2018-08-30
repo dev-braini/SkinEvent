@@ -82,8 +82,6 @@ public class EventStartmode implements Listener {
         }
         this.sender = p;
 
-        System.out.println("BUKKIT Permsissions sender: "+ p.getEffectivePermissions().toString());
-
         if(p.hasPermission("skinevent.admin")){
             p.openInventory(inv);
         } else eventSkinChoose.showInventory(p, false);
@@ -151,25 +149,5 @@ public class EventStartmode implements Listener {
             if (clickedDisplayName.contains("Nein")) forceChange = true;
             if(!clickedDisplayName.contains("Abbrechen")) eventSkinChoose.showInventory(player, forceChange);
         }
-    }
-
-    @EventHandler
-    public void onPlayerChat(AsyncPlayerChatEvent player) {
-
-        /*if(!playerVoted.contains(player)) {
-            if (player.getMessage() == "/skin vote yes" || player.getMessage() == "/skin vote yes") {
-                player.setMessage(ChatColor.GREEN + "Thank you for voting");
-                playerVoted.add(player);
-            }
-        } else {
-            player.setMessage(ChatColor.RED + "You've already voted");
-        }*/
-
-        //System.out.println("VOTE: " + player.getMessage());
-
-        /*System.out.println("onPlayerChat: " + player.getMessage());
-        if (player.getMessage().contains("yes")) {
-            //Bukkit.broadcastMessage(winningPlayer.getPlayer() + ChatColor.GREEN + " has won!");
-        }*/
     }
 }

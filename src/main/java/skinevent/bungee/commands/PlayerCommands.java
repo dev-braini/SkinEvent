@@ -49,9 +49,6 @@ public class PlayerCommands extends Command {
 
         final ProxiedPlayer p = (ProxiedPlayer) sender;
 
-        System.out.println("BUNGEE Permsissions sender: "+ sender.getPermissions());
-        System.out.println("BUNGEE Permsissions ProxiedPlayer: "+ p.getPermissions());
-
         // Skin Help
         if (args.length == 0 || args.length > 2) {
             if (!Config.SKINWITHOUTPERM) {
@@ -183,10 +180,6 @@ public class PlayerCommands extends Command {
                     });
                     return;
                 } else if(args[0].equalsIgnoreCase("vote")) {
-                    System.out.println("VOTE: " + args[1]);
-
-                    //plugin.sendToServer("startSkinEvent", "", p.getServer().getInfo());
-
                     ByteArrayOutputStream b = new ByteArrayOutputStream();
                     DataOutputStream out = new DataOutputStream(b);
                     try {

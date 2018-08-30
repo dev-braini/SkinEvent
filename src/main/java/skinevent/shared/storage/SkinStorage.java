@@ -215,9 +215,9 @@ public class SkinStorage {
                     String signature = crs.getString("Signature");
                     String timestamp = crs.getString("timestamp");
 
-                    if (isOld(Long.valueOf(timestamp))) {
+                    /*if (isOld(Long.valueOf(timestamp))) {
                         removePlayerSkin(name);
-                    }
+                    }*/
                     //remove db entries which are older den 24h
                     if (isOlderThenMinutes(Long.valueOf(timestamp), 1440)) {
                         removeSkinData(name);
@@ -256,9 +256,9 @@ public class SkinStorage {
                             timestamp = line;
                         }
                 buf.close();
-                if (isOld(Long.valueOf(timestamp))) {
+                /*if (isOld(Long.valueOf(timestamp))) {
                     removePlayerSkin(name);
-                }
+                }*/
                 if (isOlderThenMinutes(Long.valueOf(timestamp), 1440)) {
                     removeSkinData(name);
                     Object skin = MojangAPI.getSkinProperty(MojangAPI.getUUID(name));
@@ -275,6 +275,58 @@ public class SkinStorage {
 
             return null;
         }
+    }
+
+    /**
+     * Returns property object containing skin data of the wanted skin
+     **/
+    public static boolean checkForOldSkin(String name) {
+        name = name.toLowerCase();
+        if (Config.USE_MYSQL) {
+
+            CachedRowSet crs = mysql.query("select * from " + Config.MYSQL_PLAYERTABLE + " where Nick=?", name);
+            if (crs != null) {
+                try {
+                    String timestamp = crs.getString("timestamp");
+
+                    if (isOlderThenMinutes(Long.valueOf(timestamp), Config.SKIN_INVALID_AFTER)) {
+                        removePlayerSkin(name);
+                        return true;
+                    }
+                } catch (Exception e) {
+                }
+            } else removePlayerSkin(name);
+        } else {
+            File skinFile = new File(
+                    folder.getAbsolutePath() + File.separator + "Skins" + File.separator + name + ".skin");
+
+            try {
+                if (!skinFile.exists()) {
+                    removePlayerSkin(name);
+                    return true;
+                }
+
+                BufferedReader buf = new BufferedReader(new FileReader(skinFile));
+
+                String line, value = "", signature = "", timestamp = "";
+                for (int i = 0; i < 3; i++)
+                    if ((line = buf.readLine()) != null)
+                        if (value.isEmpty()) {
+                            value = line;
+                        } else if (signature.isEmpty()) {
+                            signature = line;
+                        } else {
+                            timestamp = line;
+                        }
+                buf.close();
+                if (isOlderThenMinutes(Long.valueOf(timestamp), Config.SKIN_INVALID_AFTER)) {
+                    removePlayerSkin(name);
+                    return true;
+                }
+            } catch (Exception e) { }
+        }
+
+        return false;
     }
 
     public static boolean isOld(long timestamp) {
@@ -310,6 +362,7 @@ public class SkinStorage {
      **/
     public static void removePlayerSkin(String name) {
         name = name.toLowerCase();
+
         if (Config.USE_MYSQL)
             mysql.execute("delete from " + Config.MYSQL_PLAYERTABLE + " where Nick=?", name);
         else {
@@ -349,13 +402,16 @@ public class SkinStorage {
      **/
     public static void setPlayerSkin(String name, String skin) {
         name = name.toLowerCase();
+
+        String timestamp = String.valueOf(System.currentTimeMillis());
+
         if (Config.USE_MYSQL) {
             CachedRowSet crs = mysql.query("select * from " + Config.MYSQL_PLAYERTABLE + " where Nick=?", name);
 
             if (crs == null)
-                mysql.execute("insert into " + Config.MYSQL_PLAYERTABLE + " (Nick, Skin) values (?,?)", name, skin);
+                mysql.execute("insert into " + Config.MYSQL_PLAYERTABLE + " (Nick, Skin, timestamp) values (?,?, ?)", name, skin, timestamp);
             else
-                mysql.execute("update " + Config.MYSQL_PLAYERTABLE + " set Skin=? where Nick=?", skin, name);
+                mysql.execute("update " + Config.MYSQL_PLAYERTABLE + " set Skin=?, timestamp=? where Nick=?", skin, timestamp, name);
         } else {
             File playerFile = new File(
                     folder.getAbsolutePath() + File.separator + "Players" + File.separator + name + ".player");
@@ -371,7 +427,7 @@ public class SkinStorage {
 
                 FileWriter writer = new FileWriter(playerFile);
 
-                writer.write(skin);
+                writer.write(skin + "\n" + timestamp);
                 writer.close();
             } catch (Exception e) {
                 e.printStackTrace();
