@@ -208,7 +208,7 @@ public class SkinEvent extends Plugin {
 
                     if(!SkinStorage.getPlayerSkin(name).equalsIgnoreCase(name)) {
                         if(SkinStorage.checkForOldSkin(p.getName())) {
-                            SkinStorage.setPlayerSkin(name, name);
+                            SkinStorage.setPlayerSkin(name, name, false);
                             SkinApplier.applySkin(p);
                             p.sendMessage(new TextComponent(Locale.SKIN_CLEAR_SUCCESS));
                         }

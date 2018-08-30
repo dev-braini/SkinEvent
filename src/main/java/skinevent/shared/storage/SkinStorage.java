@@ -400,10 +400,13 @@ public class SkinStorage {
      * @param name - Players name
      * @param skin - Skin name
      **/
-    public static void setPlayerSkin(String name, String skin) {
+    public static void setPlayerSkin(String name, String skin, boolean permanent) {
         name = name.toLowerCase();
 
+        System.out.println("setPlayerSkin perm: " + permanent);
+
         String timestamp = String.valueOf(System.currentTimeMillis());
+        if(permanent) timestamp = String.valueOf(System.currentTimeMillis() + TimeUnit.DAYS.toMillis(365));
 
         if (Config.USE_MYSQL) {
             CachedRowSet crs = mysql.query("select * from " + Config.MYSQL_PLAYERTABLE + " where Nick=?", name);

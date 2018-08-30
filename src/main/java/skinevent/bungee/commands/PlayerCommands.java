@@ -69,7 +69,7 @@ public class PlayerCommands extends Command {
                     ProxyServer.getInstance().getScheduler().runAsync(SkinEvent.getInstance(), () -> {
                         try {
                             SkinStorage.removePlayerSkin(p.getName());
-                            SkinStorage.setPlayerSkin(p.getName(), p.getName());
+                            SkinStorage.setPlayerSkin(p.getName(), p.getName(), false);
                             SkinApplier.applySkin(p);
                             p.sendMessage(new TextComponent(Locale.SKIN_CLEAR_SUCCESS));
                             return;
@@ -125,7 +125,7 @@ public class PlayerCommands extends Command {
                     ProxyServer.getInstance().getScheduler().runAsync(SkinEvent.getInstance(), () -> {
                         try {
                             MojangAPI.getUUID(skin);
-                            SkinStorage.setPlayerSkin(p.getName(), skin);
+                            SkinStorage.setPlayerSkin(p.getName(), skin, (args[0].equalsIgnoreCase("setperm")));
                             SkinApplier.applySkin(p);
                             p.sendMessage(new TextComponent(Locale.SKIN_CHANGE_SUCCESS));
 
@@ -149,7 +149,7 @@ public class PlayerCommands extends Command {
         //skin set
         if (args.length == 2) {
             if (p.hasPermission("skinevent.skinupdate")) {
-                if (args[0].equalsIgnoreCase("set")) {
+                if (args[0].equalsIgnoreCase("set") || args[0].equalsIgnoreCase("setperm")) {
 
                     StringBuilder sb = new StringBuilder();
                     sb.append(args[1]);
@@ -175,7 +175,7 @@ public class PlayerCommands extends Command {
                     ProxyServer.getInstance().getScheduler().runAsync(SkinEvent.getInstance(), () -> {
                         try {
                             MojangAPI.getUUID(skin);
-                            SkinStorage.setPlayerSkin(p.getName(), skin);
+                            SkinStorage.setPlayerSkin(p.getName(), skin, (args[0].equalsIgnoreCase("setperm")));
                             SkinApplier.applySkin(p);
                             p.sendMessage(new TextComponent(Locale.SKIN_CHANGE_SUCCESS));
                             return;

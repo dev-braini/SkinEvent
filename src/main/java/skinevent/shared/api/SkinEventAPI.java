@@ -89,7 +89,7 @@ public class SkinEventAPI {
     public static void setSkin(final String playerName, final String skinName) {
         try {
             MojangAPI.getUUID(skinName);
-            SkinStorage.setPlayerSkin(playerName, skinName);
+            SkinStorage.setPlayerSkin(playerName, skinName, false);
             SkinStorage.setSkinData(skinName, SkinStorage.getOrCreateSkinForPlayer(skinName));
         } catch (Throwable t) {
             org.bukkit.entity.Player p = null;

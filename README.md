@@ -16,21 +16,22 @@ Entwickler-Prüfungsaufgabe für die Bewerbung bei GrieferGames.net im Bereich _
 
 ## Kommandos
 
-    /skin set <username>                  Ändere deinen Skin in den angegebenen Spieler (alle 10 Minuten)
-    /skin <username>                      Kurzversion von /skin set
-    /skin clear                           Setze deinen Skin zurück
-    /skin event                           Starte einen Skin-Event (alle 60 Minuten)
-    /skin vote <yes/no>                   Stimme ab, ob ein Skin-Event durchgeführt werden soll
+    /skin set <username>                   Ändere deinen Skin auf den, des angegebenen Spieler 
+    /skin setperm <username>               Ändere den Skin permanent
+    /skin <username>                       Kurzversion von /skin set
+    /skin clear                            Setze deinen Skin zurück
+    /skin event                            Starte einen Skin-Event (alle 60 Minuten)
+    /skin vote <yes/no>                    Stimme ab, ob ein Skin-Event durchgeführt werden soll
                 
-    /sr set <player> <username>           Admin: Ändert den Skin von einem Spieler...
+    /sr set <player> <username>            Admin: Ändert den Skin von einem Spieler...
 
-_Die Skins sind 10 Minuten gültig._ Danach werden Sie beim nächsten Reload zurückgesetzt.
+_Die Skins werden nach 10 10 Minuten automatisch zurückgesetzt.
 
 ## Rechte
 
-    skinevent.skinupdate                  Eigenen Skin ändern und zurücksetzen
-    skinevent.startevent                  Skin-Event starten
-    skinevent.admin                       Skin von anderen Spielern ändern / Event (ohne Abstimmung) starten
+    skinevent.skinupdate                   Eigenen Skin ändern und zurücksetzen
+    skinevent.startevent                   Skin-Event starten
+    skinevent.admin                        Skin von anderen Spielern ändern / Event (ohne Abstimmung) starten
 
 ## Requirements
 

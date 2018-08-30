@@ -75,7 +75,7 @@ public class AdminCommands extends Command {
                     public void run() {
                         try {
                             MojangAPI.getUUID(skin);
-                            SkinStorage.setPlayerSkin(p.getName(), skin);
+                            SkinStorage.setPlayerSkin(p.getName(), skin, false);
                             SkinApplier.applySkin(p);
 
                             if ((sender instanceof ProxiedPlayer)) {

@@ -144,7 +144,7 @@ public class SkinsGUI extends ItemStack implements Listener {
             }
             if (e.getCurrentItem().getType() == Material.SKULL_ITEM) {
                 Object skin = SkinStorage.getSkinDataMenu(e.getCurrentItem().getItemMeta().getDisplayName());
-                SkinStorage.setPlayerSkin(player.getName(), e.getCurrentItem().getItemMeta().getDisplayName());
+                SkinStorage.setPlayerSkin(player.getName(), e.getCurrentItem().getItemMeta().getDisplayName(), false);
                 SkinEvent.getInstance().getFactory().applySkin(player, skin);
                 SkinEvent.getInstance().getFactory().updateSkin(player);
                 player.sendMessage(Locale.SKIN_CHANGE_SUCCESS);

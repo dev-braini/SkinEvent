@@ -95,7 +95,7 @@ public class SkinCommand implements CommandExecutor {
                     try {
                         MojangAPI.getUUID(skin);
 
-                        SkinStorage.setPlayerSkin(p.getName(), skin);
+                        SkinStorage.setPlayerSkin(p.getName(), skin, false);
                         SkinEvent.getInstance().getFactory().applySkin(p,
                                 SkinStorage.getOrCreateSkinForPlayer(p.getName()));
                         p.sendMessage(Locale.SKIN_CHANGE_SUCCESS);
@@ -143,7 +143,7 @@ public class SkinCommand implements CommandExecutor {
                     try {
                         MojangAPI.getUUID(skin);
 
-                        SkinStorage.setPlayerSkin(p.getName(), skin);
+                        SkinStorage.setPlayerSkin(p.getName(), skin, false);
                         SkinEvent.getInstance().getFactory().applySkin(p, SkinStorage.getOrCreateSkinForPlayer(p.getName()));
                         p.sendMessage(Locale.SKIN_CHANGE_SUCCESS);
                         return;

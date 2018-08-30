@@ -74,7 +74,7 @@ public class SrCommand implements CommandExecutor {
                     public void run() {
                         try {
                             MojangAPI.getUUID(skin);
-                            SkinStorage.setPlayerSkin(p.getName(), skin);
+                            SkinStorage.setPlayerSkin(p.getName(), skin, false);
                             SkinEvent.getInstance().getFactory().applySkin(p,
                             SkinStorage.getOrCreateSkinForPlayer(p.getName()));
                             sender.sendMessage(Locale.SKIN_CHANGE_SUCCESS);
