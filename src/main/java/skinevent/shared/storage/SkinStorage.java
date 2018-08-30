@@ -216,7 +216,11 @@ public class SkinStorage {
                     String timestamp = crs.getString("timestamp");
 
                     if (isOld(Long.valueOf(timestamp))) {
-                        //removeSkinData(name); Remove that cause its useless
+                        removePlayerSkin(name);
+                    }
+                    //remove db entries which are older den 24h
+                    if (isOlderThenMinutes(Long.valueOf(timestamp), 1440)) {
+                        removeSkinData(name);
                         Object skin = MojangAPI.getSkinProperty(MojangAPI.getUUID(name));
                         if (skin != null) {
                             SkinStorage.setSkinData(name, skin);
@@ -253,7 +257,10 @@ public class SkinStorage {
                         }
                 buf.close();
                 if (isOld(Long.valueOf(timestamp))) {
-                    //removeSkinData(name);
+                    removePlayerSkin(name);
+                }
+                if (isOlderThenMinutes(Long.valueOf(timestamp), 1440)) {
+                    removeSkinData(name);
                     Object skin = MojangAPI.getSkinProperty(MojangAPI.getUUID(name));
                     if (skin != null) {
                         SkinStorage.setSkinData(name, skin);
@@ -272,6 +279,13 @@ public class SkinStorage {
 
     public static boolean isOld(long timestamp) {
         if (timestamp + TimeUnit.MINUTES.toMillis(Config.SKIN_EXPIRES_AFTER) <= System.currentTimeMillis()) {
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean isOlderThenMinutes(long timestamp, int minutes) {
+        if (timestamp + TimeUnit.MINUTES.toMillis(minutes) <= System.currentTimeMillis()) {
             return true;
         }
         return false;

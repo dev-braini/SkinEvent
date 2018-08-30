@@ -17,7 +17,7 @@ public class Locale {
             + "\n    &2/skin event &7-&f Starte einen Skin-Event.";
     public static String HELP_SR = "    &2/sr &7- &fZeige Admin Kommandos.";
     public static String NOT_PREMIUM = "&e[&2SkinEvent&e] &4Fehler&8: &cPremium player mit diesem Namen existiert nicht.";
-    public static String SKIN_COOLDOWN_NEW = "&e[&2SkinEvent&e] &4Fehler&8: &cDu kannst deinen Skin nur alle &e%s &csekunden aendern.";
+    public static String SKIN_COOLDOWN_NEW = "&e[&2SkinEvent&e] &4Fehler&8: &cDu kannst den Skin erst in &e%s &csekunden wieder aendern.";
     public static String SKIN_CHANGE_SUCCESS = "&e[&2SkinEvent&e] &2Dein Skin wurde geaendert.";
     public static String SKIN_CLEAR_SUCCESS = "&e[&2SkinEvent&e] &2Dein Skin wurde zurueckgesetzt.";
     public static String HELP_ADMIN = "  &2&lSkinEvent &7- &f&lv%ver% &c&lAdmin"

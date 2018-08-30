@@ -108,8 +108,7 @@ public class EventSkinChoose implements Listener {
 
             if(forceChange) {
                 plugin.sendToBungeeCord(sender, "setPlayerSkin", clickedDisplayName);
-            }
-            else esc.doASurvey(clickedDisplayName);
+            } else esc.doASurvey(player, clickedDisplayName);
         }
     }
 }
