@@ -41,6 +41,7 @@ public class PlayerCommands extends Command {
 
     public void execute(CommandSender sender, final String[] args) {
 
+
         if (!(sender instanceof ProxiedPlayer)) {
             sender.sendMessage(new TextComponent(Locale.NOT_PLAYER));
             return;
@@ -48,7 +49,8 @@ public class PlayerCommands extends Command {
 
         final ProxiedPlayer p = (ProxiedPlayer) sender;
 
-        System.out.println("player permissions: " + p.getPermissions().toString());
+        System.out.println("BUNGEE Permsissions sender: "+ sender.getPermissions());
+        System.out.println("BUNGEE Permsissions ProxiedPlayer: "+ p.getPermissions());
 
         // Skin Help
         if (args.length == 0 || args.length > 2) {

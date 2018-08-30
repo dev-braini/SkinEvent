@@ -72,16 +72,14 @@ public class SrCommand implements CommandExecutor {
 
                     @Override
                     public void run() {
-
-
                         try {
                             MojangAPI.getUUID(skin);
-
-
                             SkinStorage.setPlayerSkin(p.getName(), skin);
                             SkinEvent.getInstance().getFactory().applySkin(p,
-                                    SkinStorage.getOrCreateSkinForPlayer(p.getName()));
+                            SkinStorage.getOrCreateSkinForPlayer(p.getName()));
                             sender.sendMessage(Locale.SKIN_CHANGE_SUCCESS);
+                            sender.sendMessage("§e[§2SkinEvent§e] §fDer Skin von §e"+p.getName()+" §fwurde erfolgreich geaendert");
+                            p.sendMessage("§e[§2SkinEvent§e] §fDein Skin wurde geaendert von §e" + sender.getName());
                             return;
                         } catch (SkinRequestException e) {
                             sender.sendMessage(e.getReason());

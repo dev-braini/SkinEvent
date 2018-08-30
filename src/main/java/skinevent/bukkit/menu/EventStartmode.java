@@ -1,6 +1,5 @@
 package skinevent.bukkit.menu;
 
-import net.md_5.bungee.api.event.PluginMessageEvent;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.event.EventHandler;
 import org.bukkit.Bukkit;
@@ -32,6 +31,7 @@ public class EventStartmode implements Listener {
     private Integer noVotes = 0, yesVotes = 0, numPlayers;
     private boolean isRunning = false;
     private EventSkinChoose eventSkinChoose;
+    private int eventDuration;
     ArrayList<Player> playerVoted = new ArrayList<>();
     ConsoleCommandSender console = Bukkit.getServer().getConsoleSender();
 
@@ -81,14 +81,20 @@ public class EventStartmode implements Listener {
             return;
         }
         this.sender = p;
-        p.openInventory(inv);
+
+        System.out.println("BUKKIT Permsissions sender: "+ p.getEffectivePermissions().toString());
+
+        if(p.hasPermission("skinevent.admin")){
+            p.openInventory(inv);
+        } else eventSkinChoose.showInventory(p, false);
     }
 
-    public void doASurvey(String skin) {
+    public void doASurvey(Player player, String skin) {
         numPlayers = Bukkit.getServer().getOnlinePlayers().size();
         yesVotes = 0; noVotes = 0;
         playerVoted.clear();
         isRunning = true;
+        eventDuration = 60;
 
         plugin.sendBroadcastMessage(sender.getDisplayName() + " hat eine Umfrage gestartet.");
         plugin.sendBroadcastMessage("§e/skin vote yes §f fuer §aJA");
@@ -99,11 +105,17 @@ public class EventStartmode implements Listener {
 
         final Runnable task = new Runnable() {
             public void run() {
-                //System.out.println("Would it run?"+System.currentTimeMillis());
-                //System.out.println("TOTAL: " + numPlayers + ", YES: " + yesVotes + ", NO: " + noVotes);
+                String message = "Abstimmung dauert noch " + eventDuration + " Sekunden.";
+
+                if(eventDuration > 0) {
+                    if(eventDuration == 20) plugin.sendBroadcastMessage(message);
+                    else plugin.sendMessageToPlayer(player, message);
+
+                    eventDuration -= 20;
+                }
             }
         };
-        final ScheduledFuture<?> handle = scheduler.scheduleAtFixedRate(task, 2, 5, SECONDS);
+        final ScheduledFuture<?> handle = scheduler.scheduleAtFixedRate(task, 1, 20, SECONDS);
         scheduler.schedule(new Runnable() {
             public void run() {
                 handle.cancel(true);
@@ -137,10 +149,7 @@ public class EventStartmode implements Listener {
             boolean forceChange = false;
 
             if (clickedDisplayName.contains("Nein")) forceChange = true;
-
-            eventSkinChoose.showInventory(player, forceChange);
-
-
+            if(!clickedDisplayName.contains("Abbrechen")) eventSkinChoose.showInventory(player, forceChange);
         }
     }
 

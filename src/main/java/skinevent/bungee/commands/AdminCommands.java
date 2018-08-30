@@ -77,8 +77,17 @@ public class AdminCommands extends Command {
                             MojangAPI.getUUID(skin);
                             SkinStorage.setPlayerSkin(p.getName(), skin);
                             SkinApplier.applySkin(p);
-                            sender.sendMessage(Locale.SKIN_CHANGE_SUCCESS);
+
+                            if ((sender instanceof ProxiedPlayer)) {
+                                sender.sendMessage("§e[§2SkinEvent§e] §fDer Skin von §e"+p.getName()+" §fwurde erfolgreich geaendert");
+                                p.sendMessage("§e[§2SkinEvent§e] §fDein Skin wurde geaendert von §e" + sender.getName());
+                            } else {
+                                p.sendMessage("§e[§2SkinEvent§e] §fDein Skin wurde geaendert.");
+                            }
+                            p.sendMessage("§e[§2SkinEvent§e] §fDu kannst ihn mit §e/skin clear §fzurücksetzen.");
+
                             return;
+
                         } catch (SkinRequestException e) {
                             sender.sendMessage(e.getReason());
                             return;
@@ -234,6 +243,7 @@ public class AdminCommands extends Command {
                     sender.sendMessage(Locale.SR_LINE);
             }
         } else {
+            System.out.println("Permission denied (AdminCommands)");
             sender.sendMessage(Locale.PLAYER_HAS_NO_PERMISSION);
             return;
 
