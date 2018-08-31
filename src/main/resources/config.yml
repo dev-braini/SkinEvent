@@ -6,7 +6,7 @@
 SkinWithoutPerm: false
 
 # How long are the skins stored in database (in minutes)
-SkinExpiresAfter: 10
+SkinExpiresAfter: 1440
 
 # How long are the skins valid (in minutes) - autoclear after ... minutes
 SkinInvalidAfter: 10
