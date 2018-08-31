@@ -216,6 +216,6 @@ public class SkinEvent extends Plugin {
                 }
             }
         };
-        scheduler.scheduleAtFixedRate(task, 1, 20, SECONDS);
+        scheduler.scheduleAtFixedRate(task, 1, 1, MINUTES);
     }
 }
