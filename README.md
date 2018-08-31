@@ -15,6 +15,9 @@ Demo-Bungee-Server: 80.240.22.129
 * Starte einen Skin-Event, in welchem alle Spieler auf dem Server, nach einer Abstimmung, denselben Skin erhalten
 * Adminrechte: Ändere den Skin eines anderen Spielers / Starte den Skin-Event ohne Abstimmung
 * BungeeCord support - Die Skins bleiben auch bei einem Serverwechsel erhalten
+* Fast keine Majon-API rate limits wegen Skincaching in Datenbank.
+* Skins werden nach konfigurierbarer Dauer automatisch zurückgesetzt (ausser beim permanentem Ändern des Skins)
+* Konfigurierbare Cooldowns (SkinChange, SkinEvent)
 * Keine Client-Modifikationen nötig
 * MySQL-Datenbank
 
@@ -29,7 +32,7 @@ Demo-Bungee-Server: 80.240.22.129
                 
     /sr set <player> <username>            Admin: Ändert den Skin von einem Spieler...
 
-_Die Skins werden nach 10 Minuten automatisch zurückgesetzt._
+_Skins werden nach 10 Minuten automatisch zurückgesetzt._
 
 ## Rechte
 
