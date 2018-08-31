@@ -403,8 +403,6 @@ public class SkinStorage {
     public static void setPlayerSkin(String name, String skin, boolean permanent) {
         name = name.toLowerCase();
 
-        System.out.println("setPlayerSkin perm: " + permanent);
-
         String timestamp = String.valueOf(System.currentTimeMillis());
         if(permanent) timestamp = String.valueOf(System.currentTimeMillis() + TimeUnit.DAYS.toMillis(365));
 
