@@ -19,7 +19,7 @@ Demo-Bungee-Server: 80.240.22.129
 * Skins werden nach konfigurierbarer Dauer automatisch zurückgesetzt (ausser beim permanentem Ändern des Skins)
 * Konfigurierbare Cooldowns (SkinChange, SkinEvent)
 * Keine Client-Modifikationen nötig
-* MySQL-Datenbank
+* MySQL-Datenbank oder File-Storage
 
 ## Kommandos
 
