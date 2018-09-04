@@ -1,18 +1,11 @@
 package skinevent.bungee;
 
-import net.md_5.bungee.BungeeCord;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.config.ServerInfo;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
-import net.md_5.bungee.api.event.PluginMessageEvent;
-import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.api.plugin.Plugin;
-//import org.bstats.bungeecord.MetricsLite;
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
-import org.bukkit.plugin.messaging.PluginMessageListener;
 import skinevent.bungee.commands.AdminCommands;
 import skinevent.bungee.commands.PlayerCommands;
 import skinevent.bungee.listeners.BukkitListener;
@@ -20,8 +13,6 @@ import skinevent.bungee.listeners.LoginListener;
 import skinevent.shared.storage.Config;
 import skinevent.shared.storage.Locale;
 import skinevent.shared.storage.SkinStorage;
-import skinevent.shared.utils.MojangAPI;
-import skinevent.shared.utils.MojangAPI.SkinRequestException;
 import skinevent.shared.utils.MySQL;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -30,10 +21,8 @@ import java.net.URL;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ScheduledFuture;
 
 import static java.util.concurrent.TimeUnit.MINUTES;
-import static java.util.concurrent.TimeUnit.SECONDS;
 
 public class SkinEvent extends Plugin {
 
@@ -106,9 +95,7 @@ public class SkinEvent extends Plugin {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        getProxy().getServers().values().stream().forEach((server) -> {
-            server.sendData(channel, stream.toByteArray());
-        });
+        getProxy().getServers().values().stream().forEach((server) -> server.sendData(channel, stream.toByteArray()));
     }
 
     public void sendToConsole(String command) {
@@ -117,10 +104,6 @@ public class SkinEvent extends Plugin {
 
     @Override
     public void onEnable() {
-
-        //@SuppressWarnings("unused")
-        //MetricsLite metrics = new MetricsLite(this);
-
         instance = this;
         Config.load(getResourceAsStream("config.yml"));
         Locale.load();
@@ -153,50 +136,6 @@ public class SkinEvent extends Plugin {
         console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §a   |  SkinEvent v"+getVersion()+"  |"));
         console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §a   +==================+"));
         console.sendMessage(new TextComponent(""));
-
-        /*exe.submit(new Runnable() {
-
-            @Override
-            public void run() {
-
-                CommandSender console = getProxy().getConsole();
-
-                if (Config.UPDATER_ENABLED) {
-                    if (checkVersion(console).equals(getVersion())) {
-                        outdated = false;
-                        console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §a----------------------------------------------"));
-                        console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §a    +================+"));
-                        console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §a    |   SkinEvent   |"));
-                        console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §a    +================+"));
-                        console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §a----------------------------------------------"));
-                        console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §b    Current version: §a" + getVersion()));
-                        console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §a    This is the latest version!"));
-                        console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §a----------------------------------------------"));
-                    } else {
-                        outdated = true;
-                        console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §a----------------------------------------------"));
-                        console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §a    +================+"));
-                        console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §a    |   SkinEvent   |"));
-                        console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §a    +================+"));
-                        console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §a----------------------------------------------"));
-                        console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §b    Current version: §c" + getVersion()));
-                        console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §e    A new version is available! Download it at:"));
-                        console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §e    https://www.spigotmc.org/resources/skinevent.2124"));
-                        console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §a----------------------------------------------"));
-                    }
-                }
-
-                if (Config.DEFAULT_SKINS_ENABLED)
-                    for (String skin : Config.DEFAULT_SKINS)
-                        try {
-                            SkinStorage.setSkinData(skin, MojangAPI.getSkinProperty(MojangAPI.getUUID(skin)));
-                        } catch (SkinRequestException e) {
-                            if (SkinStorage.getSkinData(skin) == null)
-                                console.sendMessage(new TextComponent("§e[§2SkinEvent§e] §cDefault Skin '" + skin + "' request error:" + e.getReason()));
-                        }
-            }
-
-        });*/
 
         // check players for old skin
         final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);

@@ -1,11 +1,6 @@
 package skinevent.bukkit;
 
-import net.md_5.bungee.api.chat.TextComponent;
-import org.bstats.bukkit.MetricsLite;
-
-import org.bukkit.event.player.PlayerInteractEvent;
 import org.inventivetalent.update.spiget.SpigetUpdate;
-import org.inventivetalent.update.spiget.UpdateCallback;
 import org.inventivetalent.update.spiget.comparator.VersionComparator;
 
 import org.bukkit.Bukkit;
@@ -29,8 +24,6 @@ import skinevent.bukkit.menu.SkinsGUI;
 import skinevent.bukkit.skinfactory.SkinFactory;
 import skinevent.bukkit.skinfactory.UniversalSkinFactory;
 import skinevent.shared.storage.*;
-import skinevent.shared.utils.MojangAPI;
-import skinevent.shared.utils.MojangAPI.SkinRequestException;
 import skinevent.shared.utils.MySQL;
 import skinevent.shared.utils.ReflectionUtil;
 
@@ -90,9 +83,6 @@ public class SkinEvent extends JavaPlugin {
     public void onEnable() {
 
         ConsoleCommandSender console = getServer().getConsoleSender();
-
-        //@SuppressWarnings("unused")
-        //MetricsLite metrics = new MetricsLite(this);
 
         SpigetUpdate updater = new SpigetUpdate(this, 2124);
         updater.setVersionComparator(VersionComparator.EQUAL);
@@ -247,53 +237,14 @@ public class SkinEvent extends JavaPlugin {
                     });
                 }
             });
-            /*if (Config.UPDATER_ENABLED) {
-                updater.checkForUpdate(new UpdateCallback() {
-                    @Override
-                    public void updateAvailable(String newVersion, String downloadUrl, boolean hasDirectDownload) {
-                        if (hasDirectDownload) {
-                            console.sendMessage("§e[§2SkinEvent§e] §a----------------------------------------------");
-                            console.sendMessage("§e[§2SkinEvent§e] §a    +================+");
-                            console.sendMessage("§e[§2SkinEvent§e] §a    |   SkinEvent   |");
-                            console.sendMessage("§e[§2SkinEvent§e] §a    |----------------|");
-                            console.sendMessage("§e[§2SkinEvent§e] §a    |  §eBungee Mode§a   |");
-                            console.sendMessage("§e[§2SkinEvent§e] §a    +================+");
-                            console.sendMessage("§e[§2SkinEvent§e] §a----------------------------------------------");
-                            console.sendMessage("§e[§2SkinEvent§e] §b    Current version: §c" + getVersion());
-                            console.sendMessage("§e[§2SkinEvent§e]     A new version is available! Downloading it now...");
-                            console.sendMessage("§e[§2SkinEvent§e] §a----------------------------------------------");
-                            if (updater.downloadUpdate()) {
-                                console.sendMessage("§e[§2SkinEvent§e] Update downloaded successfully, it will be applied on the next restart.");
-                            } else {
-                                // Update failed
-                                console.sendMessage("§e[§2SkinEvent§e] §cCould not download the update, reason: " + updater.getFailReason());
-                            }
-                        }
-                    }
 
-                    @Override
-                    public void upToDate() {
-                        console.sendMessage("§e[§2SkinEvent§e] §a----------------------------------------------");
-                        console.sendMessage("§e[§2SkinEvent§e] §a    +================+");
-                        console.sendMessage("§e[§2SkinEvent§e] §a    |   SkinEvent   |");
-                        console.sendMessage("§e[§2SkinEvent§e] §a    |----------------|");
-                        console.sendMessage("§e[§2SkinEvent§e] §a    |  §eBungee Mode§a   |");
-                        console.sendMessage("§e[§2SkinEvent§e] §a    +================+");
-                        console.sendMessage("§e[§2SkinEvent§e] §a----------------------------------------------");
-                        console.sendMessage("§e[§2SkinEvent§e] §b    Current version: §a" + getVersion());
-                        console.sendMessage("§e[§2SkinEvent§e] §a    This is the latest version!");
-                        console.sendMessage("§e[§2SkinEvent§e] §a----------------------------------------------");
-                    }
-                });
-            } else {*/
-                console.sendMessage("");
-                console.sendMessage("§e[§2SkinEvent§e] §a   +==================+");
-                console.sendMessage("§e[§2SkinEvent§e] §a   |  SkinEvent v"+getVersion()+"  |");
-                console.sendMessage("§e[§2SkinEvent§e] §a   +------------------+");
-                console.sendMessage("§e[§2SkinEvent§e] §a   |  §eBungee Mode§a     |");
-                console.sendMessage("§e[§2SkinEvent§e] §a   +==================+");
-                console.sendMessage("");
-            //}
+            console.sendMessage("");
+            console.sendMessage("§e[§2SkinEvent§e] §a   +==================+");
+            console.sendMessage("§e[§2SkinEvent§e] §a   |  SkinEvent v"+getVersion()+"  |");
+            console.sendMessage("§e[§2SkinEvent§e] §a   +------------------+");
+            console.sendMessage("§e[§2SkinEvent§e] §a   |  §eBungee Mode§a     |");
+            console.sendMessage("§e[§2SkinEvent§e] §a   +==================+");
+            console.sendMessage("");
 
             return;
         }
@@ -354,59 +305,5 @@ public class SkinEvent extends JavaPlugin {
                 });
             }
         }, this);
-
-        /*Bukkit.getScheduler().runTaskAsynchronously(this, new Runnable() {
-
-            @Override
-            public void run() {
-
-                if (Config.UPDATER_ENABLED) {
-                    updater.checkForUpdate(new UpdateCallback() {
-                        @Override
-                        public void updateAvailable(String newVersion, String downloadUrl, boolean hasDirectDownload) {
-                            if (hasDirectDownload) {
-                                console.sendMessage("§e[§2SkinEvent§e] §a----------------------------------------------");
-                                console.sendMessage("§e[§2SkinEvent§e] §a    +================+");
-                                console.sendMessage("§e[§2SkinEvent§e] §a    |   SkinEvent   |");
-                                console.sendMessage("§e[§2SkinEvent§e] §a    +================+");
-                                console.sendMessage("§e[§2SkinEvent§e] §a----------------------------------------------");
-                                console.sendMessage("§e[§2SkinEvent§e] §b    Current version: §c" + getVersion());
-                                console.sendMessage("§e[§2SkinEvent§e]     A new version is available! Downloading it now...");
-                                console.sendMessage("§e[§2SkinEvent§e] §a----------------------------------------------");
-                                if (updater.downloadUpdate()) {
-                                    console.sendMessage("§e[§2SkinEvent§e] Update downloaded successfully, it will be applied on the next restart.");
-                                } else {
-                                    // Update failed
-                                    console.sendMessage("§e[§2SkinEvent§e] §cCould not download the update, reason: " + updater.getFailReason());
-                                }
-                            }
-                        }
-
-                        @Override
-                        public void upToDate() {
-                            console.sendMessage("§e[§2SkinEvent§e] §a----------------------------------------------");
-                            console.sendMessage("§e[§2SkinEvent§e] §a    +================+");
-                            console.sendMessage("§e[§2SkinEvent§e] §a    |   SkinEvent   |");
-                            console.sendMessage("§e[§2SkinEvent§e] §a    +================+");
-                            console.sendMessage("§e[§2SkinEvent§e] §a----------------------------------------------");
-                            console.sendMessage("§e[§2SkinEvent§e] §b    Current version: §a" + getVersion());
-                            console.sendMessage("§e[§2SkinEvent§e] §a    This is the latest version!");
-                            console.sendMessage("§e[§2SkinEvent§e] §a----------------------------------------------");
-                        }
-                    });
-                }
-
-                if (Config.DEFAULT_SKINS_ENABLED)
-                    for (String skin : Config.DEFAULT_SKINS)
-                        try {
-                            SkinStorage.setSkinData(skin, MojangAPI.getSkinProperty(MojangAPI.getUUID(skin)));
-                        } catch (SkinRequestException e) {
-                            if (SkinStorage.getSkinData(skin) == null)
-                                console.sendMessage("§e[§2SkinEvent§e] §cDefault Skin '" + skin + "' request error: " + e.getReason());
-                        }
-            }
-
-        });*/
-
     }
 }
