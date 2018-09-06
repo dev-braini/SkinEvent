@@ -1,6 +1,9 @@
-Unterstützte Versionen: 1.7.10 - 1.12.x
+<p align="center">
+  <img src="https://raw.githubusercontent.com/dev-braini/SkinEvent/master/src/main/resources/logo_skinevent.png">
+</p>
 
 # SkinEvent
+Unterstützte Versionen: 1.7.10 - 1.12.x
 ## Beschreibung
 Entwickler-Prüfungsaufgabe für die Bewerbung bei GrieferGames.net im Bereich _Spigot & Bungeecord Entwicklung_.
 
